@@ -9,6 +9,12 @@
   <div class="wrapper">
     <% if user_signed_in? %>
       <h3>Hello, <%= current_user.email %>!</h3>
+      
+  
+        <td><%= image_tag current_user.image.to_s %></td>
+      
+      
+      
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to "サインイン", new_user_session_path %>

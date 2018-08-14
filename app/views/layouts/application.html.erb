@@ -2,23 +2,23 @@
 <html>
 <head>
   <title>Workspace</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="wrapper">
+    <% if user_signed_in? %>
+      <h3>Hello, <%= current_user.email %>!</h3>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "サインイン", new_user_session_path %>
+      <%= link_to "ユーザー登録", new_user_registration_path %>
+    <% end %>
+    <hr>
 
-<% if user_signed_in? %>
-<h3>Hello, <%= current_user.email %>!</h3>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<% else %>
-<%= link_to "サインイン", new_user_session_path %>
-<%= link_to "ユーザー登録", new_user_registration_path %>
-<% end %>
-<hr>
+    <%= yield %>
+  </div>
 
-
-<%= yield %>
-
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

@@ -12,4 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap/dist/css/bootstrap.min
+ *= require propellerkit/dist/css/propeller.min
+ *= require owl.carousel/dist/assets/owl.carousel.min
  */

@@ -1,0 +1,43 @@
+<td></td>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3 col-sm-6">
+
+            <div class="card hovercard">
+                <div class="cardheader">
+
+                </div>
+                <div class="avatar">
+                    <!--<img alt="" src="http://lorempixel.com/100/100/people/9/">-->
+                    <%= image_tag current_user.image.to_s %>
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <a target="_blank" href="https://scripteden.com/"><%= current_user.name %></a>
+                    </div>
+                    <div class="desc"><%= current_user.age %> years old</div>
+                    <div class="desc">Email:<%= current_user.email %></div>
+                    <div class="desc">UserNumber:<%= current_user.id %></div>
+                </div>
+                <div class="bottom">
+                    <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" rel="publisher"
+                       href="https://plus.google.com/+ahmshahnuralam">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm" rel="publisher"
+                       href="https://plus.google.com/shahnuralam">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+                        <i class="fa fa-behance"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+	</div>
+</div>

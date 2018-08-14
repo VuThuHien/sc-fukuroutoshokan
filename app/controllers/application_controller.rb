@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
   protected
   def configure_permitted_parameters
     #sign_upのときname, ageを許可
-    devise_parameter_sanitizer.permit :sign_up, keys: [:name, :age]
+    devise_parameter_sanitizer.permit :sign_up, keys: [:name, :age, :image]
     #account_updateのときname, ageを許可
-    devise_parameter_sanitizer.permit :account_update, keys: [:name,:age]
+    devise_parameter_sanitizer.permit :account_update, keys: [:name,:age, :image]
   end
 end

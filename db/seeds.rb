@@ -1,19 +1,29 @@
 User.create!([
   {email: "vu.thu.hien@gmail.com",
    password: "hien123", password_confirmation: "hien123",
-   name: "Vu Thu Hien", username: "hienvu", is_admin: 1},
+   name: "Vu Thu Hien", username: "hienvu", is_admin: 1,
+   image: File.open(Rails.root + "public/uploads/image/profile_default.png")
+  },
   {email: "nguyen.xuan.thien@gmail.com",
    password: "thien123", password_confirmation: "thien123",
-   name: "Nguyen Xuan Thien", username: "xuanthien"},
+   name: "Nguyen Xuan Thien", username: "xuanthien",
+   image: File.open(Rails.root + "public/uploads/image/profile_default.png")
+  },
   {email: "kumekawa.kanau@gmail.com",
    password: "kumekawa123", password_confirmation: "kumekawa123",
-   name: "Kumekawa Kanau", username: "kumekawa"},
+   name: "Kumekawa Kanau", username: "kumekawa",
+   image: File.open(Rails.root + "public/uploads/image/profile_default.png")
+  },
   {email: "watanabe.hikaru@gmail.com",
    password: "hikaru123", password_confirmation: "hikaru123",
-   name: "Watanabe Hikaru", username: "hikaru"},
+   name: "Watanabe Hikaru", username: "hikaru",
+   image: File.open(Rails.root + "public/uploads/image/profile_default.png")
+  },
   {email: "admin@gmail.com",
    password: "admin123", password_confirmation: "admin123",
-   name: "Admin", username: "admin", is_admin: 1}
+   name: "Admin", username: "admin", is_admin: 1,
+   image: File.open(Rails.root + "public/uploads/image/profile_default.png")
+  }
 ])
 
 10.times do |n|

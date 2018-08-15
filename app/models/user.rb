@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validate :validate_username
   validates :name, presence: true
   
-  mount_uploader :image, ImagesUploader
+  mount_uploader :image, AvatarUploader
   
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

@@ -25,6 +25,14 @@
         <%= link_to user_path(current_user), class:"nav-link dropdown-toggle", id:"navbardrop", "data-toggle": "dropdown" do %>
           <%= current_user.username %>
         <% end %>
+        
+        <div class="dropdown-menu">
+          <%= link_to user_path(current_user), class:"dropdown-item" do %>
+            My profile
+          <% end %>
+          <a class="dropdown-item" href="#">My reviews</a>
+          <%= link_to "Signout", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+        </div>
       <% else %>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
@@ -33,11 +41,6 @@
           <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
         </li>
       <% end %>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">My profile</a>
-        <a class="dropdown-item" href="#">My reviews</a>
-        <%= link_to "Signout", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
-      </div>
     </li>
   </ul>
 </nav>

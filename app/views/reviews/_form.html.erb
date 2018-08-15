@@ -10,6 +10,18 @@
       </ul>
     </div>
   <% end %>
+  <div class="field">
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+  <div class="field">
+    <%= form.label :content %><br>
+    <%= form.text_field :content %>
+  </div>
+  <div class="field">
+    <%= form.label :book_id %><br>
+    <%= form.number_field :book_id %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

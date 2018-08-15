@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180814074347) do
+ActiveRecord::Schema.define(version: 20180814144502) do
 
   create_table "author_books", force: :cascade do |t|
     t.integer "author_id"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20180814074347) do
     t.datetime "publish_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "isbn"
+    t.string "publisher"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -62,6 +64,13 @@ ActiveRecord::Schema.define(version: 20180814074347) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.string "url"
+    t.integer "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "rates", force: :cascade do |t|
     t.integer "user_id"
     t.integer "book_id"
@@ -74,6 +83,15 @@ ActiveRecord::Schema.define(version: 20180814074347) do
     t.integer "user_id"
     t.integer "book_id"
     t.string "title"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "suggest_books", force: :cascade do |t|
+    t.integer "from_id"
+    t.integer "to_id"
+    t.integer "book_id"
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -95,6 +113,9 @@ ActiveRecord::Schema.define(version: 20180814074347) do
     t.string "name"
     t.integer "age"
     t.string "image"
+    t.boolean "is_admin"
+    t.string "username"
+    t.date "birth"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

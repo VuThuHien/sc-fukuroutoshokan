@@ -242,3 +242,105 @@
 }
 
 .btn{ border-radius: 50%; width:32px; height:32px; line-height:18px;  }
+
+/* Profile Content */
+.profile-content {
+  background: #fff;
+  min-height: 460px;
+  padding: 20px;
+}
+
+
+.user-profile .user-list {
+  clear: left;
+  height: 90px;
+  margin-bottom: 5px;
+  padding-top: 5px;
+}
+
+.user-profile .userLists .list-actions {
+  float: right;
+}
+
+.user-profile .list-name {
+  display: block;
+  font-weight: bold;
+  margin-left: 96px;
+  word-wrap: break-word;
+}
+
+.user-profile .user-list .description {
+  max-height: 50px;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-profile .list-meta {
+  color: #666;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.user-profile .user-list img {
+  float: left;
+  margin-right: 10px;
+}
+
+.user-review-title a {
+  color: #f4511e !important;
+  line-height: 1.3em;
+
+  &:hover {
+    color: #c53305;
+  }
+}
+
+.reviews {
+  .image {
+    float: left;
+
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  h3 {
+    color: #A58500;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 0.5em;
+    padding: 0;
+  }
+
+  h4 {
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+  .details {
+    color: #999;
+    font-size: 16px;
+    margin-bottom: 3px;
+  }
+
+  p {
+    line-height: 140%;
+    margin: 0.5em 0 0.75em;
+    padding: 0;
+  }
+
+  .movie-year {
+    color: #adadad;
+    font-weight: bold;
+  }
+}
+
+.profile-buttons .btn {
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  width: 50%;
+}

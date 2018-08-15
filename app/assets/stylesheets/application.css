@@ -15,4 +15,5 @@
  *= require bootstrap/dist/css/bootstrap.min
  *= require propellerkit/dist/css/propeller.min
  *= require owl.carousel/dist/assets/owl.carousel.min
+ *= require propellerkit/components/datetimepicker/css/bootstrap-datetimepicker
  */

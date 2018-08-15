@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   end
   resources :authors, only: [:index, :show]
   resources :categories, only: [:index, :show]
+  resources :comments
 end

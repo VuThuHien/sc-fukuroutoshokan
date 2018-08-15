@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<%= @review.title %>
+<%= @review.content %>
+
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Delete', review_path(@review), method: :delete %> |
+<%= link_to 'Back', reviews_path %>
+
+<h2>コメント一覧</h2>
+<ul>
+<% @review.comments.each do |comment| %>
+  <li><%= comment.content %>
+  (<i><%= comment.user.username %></i>)</li>
+<% end %>
+</ul>
+
+
+<%= form_for(@comment) do |f| %>
+  <div class = "field">
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+    <%= f.hidden_field :review_id, :value => @review.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -6,11 +6,18 @@
       <%= devise_error_messages! %>
       
       <div class="form-group pmd-textfield">
-            <label for="regular1" class="control-label">
-              Username
-            </label>
-            <%= f.text_field :username, autofocus: true, id:"regular1", class:"form-control"%>
-          </div>
+        <label for="regular1" class="control-label">
+          Username
+        </label>
+        <%= f.text_field :username, autofocus: true, id:"regular1", class:"form-control"%>
+      </div>
+          
+      <div class="form-group pmd-textfield">
+        <label for="help1">
+          Email
+        </label>
+        <%= f.email_field :email,id:"help1",class:"form-control"%>
+      </div>
       
       <div class="form-group pmd-textfield">
         <label for="help1">

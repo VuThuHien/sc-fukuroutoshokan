@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
-  devise_for :users
+  devise_for :users, controllers: { registrations: :registrations }
   
   root "static_pages#show", page: "home"
   
@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :comments
   get "users/:id/reviews" => "users#reviews", as: :user_all_reviews
+  resources :relationships, only: [:create, :destroy]
 end

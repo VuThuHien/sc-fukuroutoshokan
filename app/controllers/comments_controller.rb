@@ -1,75 +1,60 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :find_review
+  before_action :find_comment, only: [:update, :destroy]
 
-  # GET /comments
-  # GET /comments.json
-  def index
-    @comments = Comment.all
-  end
-
-  # GET /comments/1
-  # GET /comments/1.json
-  def show
-  end
-
-  # GET /comments/new
-  def new
-    @comment = Comment.new
-  end
-
-  # GET /comments/1/edit
-  def edit
-  end
-
-  # POST /comments
-  # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
-    @comment.user_id = current_user.id
-
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    comments = @review.comments
+    comment = @review.comments.build comment_params
+    comment.user_id = current_user.id
+    if comment.save
+      flash[:success] = t "flash.comments.update_success"
+    else
+      flash[:danger] = t "flash.destroy_fail"
     end
+
+    render json: {comments_count: comments.size, comment_id: comment.id}
   end
 
-  # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
   def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
-      else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    @comment.review_id = params[:review_id]
+    if @comment.update comment_params.merge user_id: current_user.id
+      flash[:success] = t "flash.comments.update_success"
+    else
+      flash[:danger] = t "flash.destroy_fail"
     end
   end
 
-  # DELETE /comments/1
-  # DELETE /comments/1.json
   def destroy
-    @comment.destroy
-    respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+    comments = @review.comments
+    if (comments.include? @comment) && comments.delete(@comment)
+      flash[:success] = t "flash.comments.destroy_success"
+    else
+      flash[:danger] = t "flash.destroy_fail"
     end
+
+    render json: {comments_count: @review.comments.size}
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def comment_params
-      params.require(:comment).permit(:user_id, :content, :review_id)
-    end
+  def comment_params
+    params.require(:comment).permit :content, :review_id, :user_id
+  end
+
+  def find_comment
+    @comment = @review.comments.find_by id: params[:id]
+
+    return if @comment
+    flash[:danger] = t "flash.comments.not_found"
+    redirect_to reviews_path @review
+  end
+
+  def find_review
+    @review = Review.find_by id: params[:review_id]
+    
+    return if @review.present?
+    flash[:danger] = t "flash.reviews.not_found"
+    redirect_to root_path
+  end
 end

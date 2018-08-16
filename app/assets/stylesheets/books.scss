@@ -1,0 +1,47 @@
+.book-details {
+  background: white;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+#imagecol {
+  text-align: center;
+}
+#coverImage {
+  max-width: 150px;
+  display: block;
+  margin: 0 auto 10px;
+}
+.col {
+  float: left;
+  margin: 0 20px 10px 0;
+}
+#bookTitle {
+  margin-bottom: 0;
+  width: 100%;
+}
+#bookAuthors .smallText, #bookAuthors .authorName {
+  color: #333;
+  font-size: 110%;
+}
+#details {
+  padding: 5px 0;
+  font-size: 12px;
+  color: #333;
+}
+.infoBoxRowTitle {
+  color: #382110;
+  font-weight: bold;
+  width: 25%;
+  float: left;
+  margin: 1px 0px;
+}
+.infoBoxRowItem {
+  float: left;
+  width: 75%;
+  margin: 1px 0px;
+}
+
+.write-btn {
+  margin: 0 !important;
+}

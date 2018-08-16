@@ -1,8 +1,136 @@
-<p id="notice"><%= notice %></p>
-
-<%= @book.title %><br>
-<%= @book.publisher %><br>
-<%= @book.publish_date %><br>
-<%= link_to 'Back', books_path %><br>
-<%= image_tag @book.picture %>
+<div class="book-details">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="row">
+        <div id="imagecol" class="col-sm-4">
+          <div class="bookCoverContainer">
+            <div class="bookCoverPrimary">
+              <%= link_to book_path(@book) do %>
+                <img id="coverImage" alt="<%= @book.title %>"
+                  src="<%= @book.picture %>">
+              <% end %>
+            </div>
+          </div>
+        </div>
         
+        <div class="last col-sm-8" id="metacol">
+          <h1 id="bookTitle" class="gr-h1 gr-h1--serif" itemprop="name">
+            <%= @book.title %>
+          </h1>
+          <div id="bookAuthors" class="stacked">
+            <span class="by smallText"><small>by</small> <%= @book.authors.first.name %></span>
+          </div>
+          <div class="uitext stacked hreview-aggregate">
+            <a class="gr-hyperlink" href="#other_reviews">
+              <span class="count value-title" title="7171">
+                <%= @book.reviews.count %>
+              </span>
+              Reviews
+            </a>
+          </div>
+          
+          <div id="descriptionContainer">
+            <div id="description" class="readable stacked" style="right:0">
+              <span><%= @book.description %></span>
+            </div>
+          </div>
+          
+          <div id="details" class="uitext darkGreyText">
+            <div class="">
+              <span itemprop="bookFormat">Paperback</span>, 
+              <span itemprop="numberOfPages">611 pages</span>
+            </div>
+    
+            <div class="">
+                Published
+            2014
+             by Alpha book
+    
+                <nobr class="greyText">
+                  (first published October 25th 2011)
+                </nobr>
+            </div>
+            
+            <div class="buttons">
+              <div id="bookDataBox" class="uitext" style=" margin: 10px 0">
+                <div class="clearFloats">
+                  <div class="infoBoxRowTitle">Original Title</div>
+                  <div class="infoBoxRowItem">Thinking, Fast and Slow</div>
+                </div>
+    
+                <div class="clearFloats">
+                  <div class="infoBoxRowTitle">Edition Language</div>
+                  <div class="infoBoxRowItem" itemprop="inLanguage">Vietnamese</div>
+                </div>
+              </div>
+            </div>
+          </div><br>
+          
+          <%= link_to new_review_path(book_id: @book.id), data: {turbolinks: false},
+            class: "btn pmd-ripple-effect btn-info", title: "Write review" do %>
+            <p class="hidden-xs write-btn">Review this book</p>
+            <i class="fa fa-pencil-square-o hidden-sm hidden-md hidden-lg"></i>
+          <% end %>
+        </div>
+      </div>
+  
+      <!--show review-->
+      <div class="book-reviews">
+        <h2 >Reviews</h2>
+        <div class="friendReviews elementListBrown">
+          <div class="section firstReview">
+            <div id="review_261437465" class="review">
+              <a title="" class="left imgcol" href="">
+                <img alt="R.A. Schneider" src="https://images.gr-assets.com/users/1515690666p2/965207.jpg">
+              </a>
+          
+              <div class="left bodycol">
+                <div class="reviewHeader uitext stacked">
+                  <span class="reviewDate createdAt right text-right">Jan 13, 2012</span>
+                  <span>
+                    <a title="R.A. Schneider" class="user" name="R.A. Schneider" href="#">
+                      R.A. Schneider
+                    </a>
+                  </span>
+          
+                  rated it
+                  
+                  <span class="greyText">&nbsp;·&nbsp;</span>
+                </div>
+    
+                <div class="reviewText stacked">
+                  <span id="reviewTextContainer261437465" class="readable">
+                    <span id="">In the last few years two books took me FOREVER to get through.</span>
+                  </span>
+                </div>
+    
+                <div class="reviewFooter uitext buttons">
+                  <div class="updateActionLinks">
+                    <span class="likeItContainer" id="like_container_review_261437465">
+                      <a href="#">
+                        <span class="likesCount userHasRating">564 likes</span>
+                      </a>&nbsp;·&nbsp;
+                      <span class="loadingLinkSpan">
+                        <a class="jsLike like_it gr-button gr-button--small minor loadingLink" href="#">Unlike</a>
+                      </span>
+                    </span>&nbsp;·&nbsp;
+                    <a href="#" >26 comments</a>&nbsp;·&nbsp;
+                    <a href="#">see review</a>
+                  </div>
+                </div>
+              </div>
+              <div class="clear"></div>
+            </div>
+        
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="col-sm-4">
+      Hello
+    </div>
+  
+  </div>
+</div>

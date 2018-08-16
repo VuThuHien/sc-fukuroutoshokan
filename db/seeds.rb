@@ -42,6 +42,7 @@ end
     isbn: Faker::Number.number(9),
     publisher: Faker::Book.publisher,
     publish_date: "01-01-2007",
+    description: Faker::Lorem.paragraph(20),
     picture: File.open(Rails.root + "public/uploads/image/book_default.jpg"),
   )
 end

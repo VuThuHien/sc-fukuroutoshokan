@@ -1,4 +1,4 @@
-<%= form_with(model: review, local: true) do |form| %>
+<%= form_for review do |form| %>
   <% if review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
@@ -10,20 +10,45 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+  <% if params[:book_id].present? %>
+    <h3 class="title-font">
+      <%= t "user.write_review" %> for 
+      <span style="color: red">
+        <%= link_to book.title, book_path(book) %>
+      </span>
+    </h3><br>
+  <% else %>
+    <h2 class="text-left"><%= t ".form_title" %></h2><br>
+  <% end %>
+  <div class="form-group pmd-textfield">
+    <%= form.label :title, class: "control-label" %> <span style="color: red;">*</span><br>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= form.label :content %><br>
-    <%= form.text_field :content %>
+  
+  <div class="form-group pmd-textfield">
+    <% if params[:book_id].present? %>
+      <%= form.hidden_field :book_id, value: params[:book_id] %>
+    <% else %>
+      <label class="control-label">
+        <%= t ".book_name" %>
+        <span style="color: red;">*</span>
+      </label>
+      <%= form.select :book_id, support.load_books,
+        {include_blank: t(".choose_book")}, {class: "select-with-search
+        form-control pmd-select2 select-book required"} %>
+    <% end %>
   </div>
-  <div class="field">
-    <%= form.label :book_id %><br>
-    <%= form.number_field :book_id %>
+  
+  <div class="form-group pmd-textfield">
+    <%= form.label :content, class: "control-label" %><br>
+    <%= form.text_area :content, class: "ckeditor" %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  
+  <div class="text-center">
+    <div class="actions">
+      <%= form.submit class:"btn btn-info" %>
+    </div>
+    
+    <%= link_to 'Back', reviews_path, class:"btn btn-default" %>
   </div>
 <% end %>

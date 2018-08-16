@@ -21,4 +21,8 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :comments
   get "users/:id/reviews" => "users#reviews", as: :user_all_reviews
+  get "static_pages/about", as: :about
+  get "static_pages/easter", as: :easter
+  
+  get 'search', to: 'books#search'
 end

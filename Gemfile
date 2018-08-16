@@ -26,6 +26,8 @@ gem "ckeditor"
 gem "truncate_html"
 gem "faker"
 gem 'rails_admin'
+gem "ransack"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

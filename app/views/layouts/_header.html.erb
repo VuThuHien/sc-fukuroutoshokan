@@ -1,46 +1,58 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand -->
-  <a class="navbar-brand" href="#">Fukurou Toshokan</a>
-
-  <!-- Links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="#">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Contact</a>
-    </li>
-    <li class="nav-item">
-      <form class="form-inline" action="/action_page.php">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-success" type="submit">
-          <i class="fa fa-search"></i>
-        </button>
-      </form>
-    </li>
-
-    <!-- Dropdown -->
-    <li class="nav-item dropdown">
-      <% if user_signed_in? %>
-        <%= link_to user_path(current_user), class:"nav-link dropdown-toggle", id:"navbardrop", "data-toggle": "dropdown" do %>
-          <%= current_user.username %>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand"><%= t "home.title" %></span>
+    </div>
+    <ul class="nav navbar-nav">
+      <li>
+        <%= link_to root_path, data: {turbolinks: false} do %>
+          <%= t "user.home" %>
         <% end %>
-        
-        <div class="dropdown-menu">
-          <%= link_to user_path(current_user), class:"dropdown-item" do %>
-            My profile
+      </li>
+      <li class="dropdown pmd-dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          Category
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <% Category.order("title asc").each do |cate| %>
+            <div class="col-sm-3">
+              <li>
+                <%= link_to t(cate.title), category_path(cate),
+                  data: {turbolinks: false} %>
+              </li>
+            </div>
           <% end %>
-          <a class="dropdown-item" href="#">My reviews</a>
-          <%= link_to "Signout", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
-        </div>
+        </ul>
+      </li>
+      <li>
+        <%= link_to "#", data: {turbolinks: false} do %>
+          <!--<i class="fa fa-users fa-md " aria-hidden="true"></i>-->
+          <%= t "home.about" %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "#", data: {turbolinks: false} do %>
+          <!--<span class="glyphicon glyphicon-envelope"></span>-->
+          <%= t "home.contact" %>
+        <% end %>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <%= render "layouts/header_user.html.erb" %>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        <li>
+          <%= link_to new_user_registration_path, method: :get, data: {turbolinks: false} do %>
+            <span class="glyphicon glyphicon-user"></span> <%= t "user.sign_up" %>
+          <% end %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
+        <li>
+          <%= link_to user_session_path, method: :get, data: {turbolinks: false} do %>
+            <span class="glyphicon glyphicon-log-in"></span> <%= t "user.login" %>
+          <% end %>
         </li>
       <% end %>
-    </li>
-  </ul>
+    </ul>
+  </div>
 </nav>

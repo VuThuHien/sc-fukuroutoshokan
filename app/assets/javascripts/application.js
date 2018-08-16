@@ -17,4 +17,6 @@
 //= require propellerkit/dist/js/propeller.min
 //= require owl.carousel/dist/owl.carousel.min
 //= require propellerkit/components/datetimepicker/js/bootstrap-datetimepicker
+//= require ckeditor/init
+//= require propellerkit/components/select2/js/pmd-select2
 //= require_tree .

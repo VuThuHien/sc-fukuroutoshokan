@@ -1,0 +1,65 @@
+.book-reviews {
+  margin: 50px 0;
+}
+
+.review .imgcol {
+  margin-right: 10px;
+  width: 50px;
+}
+
+.left {
+  float: left;
+}
+
+.review .reviewHeader {
+  font-size: 14px;
+}
+
+.stacked {
+  margin-bottom: 10px;
+}
+
+.review .reviewHeader .createdAt {
+  position: relative;
+  top: 2px;
+}
+.elementListBrown .reviewDate {
+  color: #bbbbbb;
+}
+a.uitext, .uitext a {
+  text-decoration: none;
+}
+.right {
+  float: right;
+}
+
+.review .reviewHeader .user {
+  font-weight: bold;
+}
+
+.friendReviews .review .reviewText {
+  line-height: 21px;
+}
+
+.updateActionLinks a {
+  color: #00635d;
+}
+
+// form
+.write-review {
+  margin: 0 30px;
+  padding: 30px;
+  background: white;
+
+  .pmd-textfield label {
+    color: #383838;
+    // font-family: "Times New Roman", Times, serif !important;
+    font-size: 20px !important;
+    font-weight: 700;
+    padding: 10px 0;
+  }
+
+  .pmd-textfield .form-control {
+    padding: 0 10px;
+  }
+}

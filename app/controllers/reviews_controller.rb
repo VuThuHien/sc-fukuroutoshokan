@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :load_support
 
   # GET /reviews
   # GET /reviews.json
@@ -11,8 +12,6 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.json
   def show
-    @comment = Comment.new
-    @comment.user_id = current_user.id
   end
 
   # GET /reviews/new
@@ -67,13 +66,15 @@ class ReviewsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_review
-      @review = Review.find(params[:id])
-    end
+  def set_review
+    @review = Review.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def review_params
-      params.require(:review).permit(:user_id, :title, :content, :book_id)
-    end
+  def review_params
+    params.require(:review).permit(:user_id, :title, :content, :book_id)
+  end
+  
+  def load_support
+    @support = Supports::Reviews.new review: Review.all, param: params
+  end
 end

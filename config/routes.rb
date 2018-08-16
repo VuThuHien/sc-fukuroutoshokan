@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
   
   root "static_pages#show", page: "home"
@@ -7,8 +8,8 @@ Rails.application.routes.draw do
     resources :reviews, except: :index
   end
   resources :books, only: [:index, :show] do
-  resources :rates, only: [:create]
-  resource :suggest_books, only: :create
+    resources :rates, only: [:create]
+    resource :suggest_books, only: :create
   end
   resources :reviews do
     resources :comments
@@ -17,4 +18,5 @@ Rails.application.routes.draw do
   resources :authors, only: [:index, :show]
   resources :categories, only: [:index, :show]
   resources :comments
+  get "users/:id/reviews" => "users#reviews", as: :user_all_reviews
 end

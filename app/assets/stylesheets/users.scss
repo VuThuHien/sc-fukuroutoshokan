@@ -6,14 +6,8 @@
     background-color: rgba(214, 224, 226, 0.2);
     border-top-width: 0;
     border-bottom-width: 2px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
     border-radius: 3px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
     box-shadow: none;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -241,8 +235,6 @@
     margin-bottom: 17px;
 }
 
-.btn{ border-radius: 50%; width:32px; height:32px; line-height:18px;  }
-
 /* Profile Content */
 .profile-content {
   background: #fff;
@@ -307,10 +299,10 @@
 
   h3 {
     color: #A58500;
-    font-size: 24px;
     font-weight: 600;
     margin: 0 0 0.5em;
     padding: 0;
+    font:italic 20px "Times New Roman", Times, serif;
   }
 
   h4 {
@@ -322,7 +314,7 @@
 
   .details {
     color: #999;
-    font-size: 16px;
+    font-size: 13px;
     margin-bottom: 3px;
   }
 
@@ -335,6 +327,10 @@
   .movie-year {
     color: #adadad;
     font-weight: bold;
+  }
+  
+  .more {
+    font-size: 14px !important;
   }
 }
 

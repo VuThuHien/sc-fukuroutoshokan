@@ -6,13 +6,18 @@ class UsersController < ApplicationController
     @reviews = @user.reviews.order(created_at: :desc).page(per_page).per 4
   end
   
+  def reviews
+    @reviews = @user.reviews.order(created_at: :desc)
+      .page(params[:page]).per(10)
+  end
+  
   private
 
   def find_user
     @user = User.find_by id: params[:id]
 
     return if @user.present?
-    flash[:danger] = t "flash.users.not_found"
+    flash[:danger] = "User not found"
     redirect_to root_path
   end
 end

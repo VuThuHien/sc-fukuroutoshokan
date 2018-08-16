@@ -135,15 +135,14 @@ p.clr, .clr {
 	padding:0;
 }
 .body h2 {
-	font:italic 25px "Times New Roman", Times, serif;
+	font:italic 23px "Times New Roman", Times, serif;
 	color:#c05622;
-	padding:0 !important;
+	padding: 10px 0 !important;
 	margin:0 !important;
-	line-height:2em;
 }
 .body .post-date {
 	font-size: 13px;
-	color:#575c5c;
+	color:#969a9a;
 	padding-bottom: 10px;
 }
 .body h3 {
@@ -155,10 +154,10 @@ p.clr, .clr {
 .body p {
 // 	font:normal 14px "Times New Roman", Times, serif;
 	color:#585858;
-	padding:5px;
+	padding: 5px 0;
 	margin:0;
 	line-height:1.8em;
-	font-size: 14px;
+	font-size: 12px;
 }
 .body img {
 	float:left;
@@ -176,13 +175,11 @@ p.clr, .clr {
 }
 .body .left {
 	float:left;
-	width:636px;
 	margin:0;
 	padding:20px 0;
 }
 .body .right {
 	float:right;
-	width:214px;
 	margin:0;
 	padding:0 0 20px 0;
 }
@@ -488,4 +485,8 @@ p.response {
   vertical-align: middle;
   line-height: 1;
   font-size: 13px;
+}
+
+.home-book-image {
+  width: 100%;
 }

@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "bootstrap": "^4.1.3",
     "owl.carousel": "^2.3.4",
     "propellerkit": "^1.3.1"
   }

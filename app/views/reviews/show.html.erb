@@ -1,27 +1,58 @@
 <p id="notice"><%= notice %></p>
-<%= @review.title %>
-<%= @review.content %>
-
-<%= link_to 'Edit', edit_review_path(@review) %> |
-<%= link_to 'Delete', review_path(@review), method: :delete %> |
-<%= link_to 'Back', reviews_path %>
-
-<h2>コメント一覧</h2>
-<ul>
-<% @review.comments.each do |comment| %>
-  <li><%= comment.content %>
-  (<i><%= comment.user.username %></i>)</li>
-<% end %>
-</ul>
-
-
-<%= form_for(@comment) do |f| %>
-  <div class = "field">
-    <%= f.label :content %><br>
-    <%= f.text_field :content %>
-    <%= f.hidden_field :review_id, :value => @review.id %>
+<div class="review-details">
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="row">
+        <div id="imagecol" class="col-sm-4">
+          <div class="bookCoverContainer">
+            <div class="bookCoverPrimary">
+              <%= link_to book_path(@review.book) do %>
+                <img id="coverImage" alt="<%= @review.book.title %>"
+                  src="<%= @review.book.picture %>">
+              <% end %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="last col-sm-8" id="metacol">
+          <h1 id="bookTitle" class="gr-h1 gr-h1--serif" itemprop="name">
+            <%= @review.title %>
+          </h1>
+          <div id="bookAuthors" class="stacked">
+            <span class="by smallText"><small>by</small> <%= @review.user.name %></span>
+          </div>
+          <div id="descriptionContainer">
+            <div id="description" class="readable stacked" style="right:0">
+              <span><%= @review.content.html_safe %></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4"></div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <%= @review.title %>
+  <%= @review.content.html_safe %>
+  
+  <% if user_signed_in? && (current_user == @review.user) %>
+    <%= link_to 'Edit', edit_review_path(@review) %> |
+    <%= link_to 'Delete', review_path(@review), method: :delete %> |
+  <% end %>
+  
+  <h2>Comments</h2>
+  
+  <div id="comments">
+    <% if user_signed_in? %>
+      <%= render "comments/form", review: @review, comment: @support.new_comment %>
+      <div id="comments" class="comments-part">
+        <%= render "comments/comments", review: @review, comments: @support.comments %>
+      </div>
+    <% else %>
+      <h3>
+        <%= link_to t("user.login"), user_session_path,
+        data: {turbolinks: false} %>
+        <%= t ".to_comment" %>
+      </h3>
+    <% end %>
   </div>
-<% end %>
+</div>

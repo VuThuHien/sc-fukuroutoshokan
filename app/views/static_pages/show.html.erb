@@ -1,16 +1,15 @@
+<% provide(:title) %>
 <div class="body">
   <div class="body_resize">
     <div class="left">
-    <% @reviews.each do |review| %>
-      <img src="<%= review.book.picture %>" alt="" width="80" height="95">
-      <h2>
-        <%= link_to review_path(review), data: {turbolinks: false} do %>
+      <% @reviews.each do |review| %>
+        <img src="<%= review.book.picture %>" alt="" width="80" height="95">
+        <h2>
+          <%= link_to review_path(review), data: {turbolinks: false} do %>
             <%= review.title %>
           <% end %>
-        <br />
-        <span>
-          Posted by <%= link_to review.user.name, user_path(review.user),
-          data: {turbolinks: false} %> | 
+        </h2>
+        <span class="post-date">
           <% if review.book.categories.any? %>
             <% review.book.categories.each do |category| %>
               <%= link_to t(category.title), category_path(category),
@@ -18,15 +17,29 @@
               <% unless category == review.book.categories.last %>/<% end %>
             <% end %>
           <% end %>
-        </span>
-      </h2>
-      <div class="bg"></div>
-      <p>
-        <%= truncate_html(review.content.html_safe, length: 600) %>
-      </p>
-      <p><%= review.comments.count %> Comments | <%= review.likes.count %> likes</p>
-      <div class="bg"></div>
-    <% end %>
+        </span><br>
+
+        <span class="post-date">
+          Posted by <%= link_to review.user.name, user_path(review.user),
+          data: {turbolinks: false} %>
+        </span>&nbsp;&nbsp;|
+        <div class="wrapIcon comment">
+          <span class="fa fa-comments"></span>&nbsp;
+          <p class="amount comment ng-binding">
+            <%= review.comments.count %>
+          </p>
+        </div>&nbsp;&nbsp;|
+        <div class="wrapIcon like">
+          <span class="fa fa-thumbs-o-up"></span>&nbsp;
+          <p class="amount like ng-binding">
+            <%= review.likes.count %>
+          </p>
+        </div>
+        <p>
+          <%= truncate_html(review.content, length: 350, omission: ' ...more') %>
+        </p>
+        <hr>
+      <% end %>
     </div>
 
     <div class="right">

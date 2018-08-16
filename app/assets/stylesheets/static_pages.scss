@@ -8,7 +8,6 @@ li.bg, .bg {
 	margin:10px 0;
 	height:3px;
 	list-style:none;
-	background:url(/assets/bg.gif) top repeat-x;
 }
 p.clr, .clr {
 	clear:both;
@@ -22,7 +21,6 @@ p.clr, .clr {
 	width: 90%;
 }
 .header {
-	background:url(/assets/header_bg.gif) top repeat-x;
 	margin:0;
 	padding:0;
 }
@@ -35,28 +33,27 @@ p.clr, .clr {
 .logoimg h2 {
 	padding:32px 0 32px 130px;
 	color:#fff;
-	font:normal 30px/1.2em Georgia, "Times New Roman", Times, serif;
+// 	font:normal 30px/1.2em Georgia, "Times New Roman", Times, serif;
 	letter-spacing:-1px;
-	background:url(/assets/logo_img.gif) no-repeat left top;
 }
 .logoimg h2 span {
 	color:#575c5c;
 }
-h1 {
+.body_resize h1 {
 	margin:0;
 	padding:26px 0;
 	color:#fff;
 	font:italic bold 40px/1.2em Georgia, "Times New Roman", Times, serif;
 }
-h1 a, h1 a:hover {
+.body_resize h1 a, .body_resize h1 a:hover {
 	color:#fff;
 	text-decoration:none;
 }
-h1 span {
+.body_resize h1 span {
 	font-weight:bold;
 	color:#eee;
 }
-h1 small {
+.body_resize h1 small {
 	padding:8px 0;
 	font:italic 12px/1.2em Georgia, "Times New Roman", Times, serif;
 	text-transform:uppercase;
@@ -75,7 +72,6 @@ h1 small {
 .search span {
 	display:block;
 	float:left;
-	background:url(/assets/search_bg.gif) left top no-repeat;
 	width:153px;
 	padding:0 5px;
 }
@@ -119,7 +115,7 @@ h1 small {
 	margin:0;
 	padding:0 10px 0 0;
 	color:#575c5c;
-	font:normal 17px "Times New Roman", Times, serif;
+// 	font:normal 17px "Times New Roman", Times, serif;
 	text-decoration:none;
 }
 .menu ul li a:hover {
@@ -141,26 +137,28 @@ h1 small {
 .body h2 {
 	font:italic 25px "Times New Roman", Times, serif;
 	color:#c05622;
-	padding:0 0 6px 0;
-	margin:0 0 10px 0;
+	padding:0 !important;
+	margin:0 !important;
 	line-height:2em;
 }
-.body h2 span {
-	font:italic 14px "Times New Roman", Times, serif;
+.body .post-date {
+	font-size: 13px;
 	color:#575c5c;
+	padding-bottom: 10px;
 }
 .body h3 {
 	color:#575c5c;
-	font:normal 20px "Times New Roman", Times, serif;
+// 	font:normal 20px "Times New Roman", Times, serif;
 	padding:30px 0 6px 0;
 	margin:0 0 10px 0;
 }
 .body p {
-	font:normal 14px "Times New Roman", Times, serif;
+// 	font:normal 14px "Times New Roman", Times, serif;
 	color:#585858;
 	padding:5px;
 	margin:0;
 	line-height:1.8em;
+	font-size: 14px;
 }
 .body img {
 	float:left;
@@ -176,62 +174,59 @@ h1 small {
 	color:#c05622;
 	text-decoration:none;
 }
-.left {
+.body .left {
 	float:left;
 	width:636px;
 	margin:0;
 	padding:20px 0;
 }
-.right {
+.body .right {
 	float:right;
 	width:214px;
 	margin:0;
 	padding:0 0 20px 0;
 }
-.right ul {
+.body .right ul {
 	list-style:none;
 	margin:5px 10px;
 	padding:0;
 }
-.right li {
+.body .right li {
 	font:normal 14px Arial, Helvetica, sans-serif;
 	color:#464646;
 	padding:5px 0;
 }
-.right li a {
-	background:url(/assets/ul_li.gif) left no-repeat;
+.body .right li a {
 	padding:0 0 0 20px;
 	margin:0;
-	font:bold 17px "Times New Roman", Times, serif;
+// 	font:bold 17px "Times New Roman", Times, serif;
 	color:#575c5c;
 	text-decoration:none;
 }
-.right li a:hover {
+.body .right li a:hover {
 	color:#c05622;
 	text-decoration:none;
 }
-.right ul.sponsors {
+.body .right ul.sponsors {
 	list-style:none;
 	margin:5px 10px;
 	padding:0;
 }
-.right li.sponsors {
-	background:url(/assets/bg.gif) bottom repeat-x;
-	font:normal 12px "Times New Roman", Times, serif;
+.body .right li.sponsors {
+// 	font:normal 12px "Times New Roman", Times, serif;
 	color:#575c5c;
 	padding:8px 0 8px 0;
 }
-.right li.sponsors a {
-	background:url(/assets/ul_li.gif) left no-repeat;
+.body .right li.sponsors a {
 	padding:0 0 0 20px;
 	margin:0;
-	font:normal 14px "Times New Roman", Times, serif;
+// 	font:normal 14px "Times New Roman", Times, serif;
 	color:#575c5c;
 	text-decoration:none;
 }
-.right li.sponsors span {
+.body .right li.sponsors span {
 	color:#c05622;
-	font:bold 13px "Times New Roman", Times, serif;
+// 	font:bold 13px "Times New Roman", Times, serif;
 }
 .widget_calendar ul {
 	margin:0;
@@ -253,7 +248,7 @@ h1 small {
 .widget_calendar caption {
 	padding:5px 0;
 	color:#575c5c;
-	font:bold 14px "Times New Roman", Times, serif;
+// 	font:bold 14px "Times New Roman", Times, serif;
 	text-transform:uppercase;
 }
 .widget_calendar table td a {
@@ -319,7 +314,6 @@ h1 small {
 	margin:10px 0;
 }
 .FBG li {
-	background:url(/assets/ul_li_fbg.gif) left no-repeat;
 	padding:4px 1px;
 	margin:0;
 }
@@ -454,4 +448,44 @@ p.response {
     font-weight: 600;
   }
 }
+.blog-list-item-avatar {
+  display: inline-block;
+  height: 50px;
+  margin-right: 10px;
+  position: relative;
+  width: 50px;
+}
+.blog-list-item-image {
+  border-radius: 3px;
+  height: auto;
+  width: 100%;
+}
+.comments-likes-info {
+  color: blue;
+}
 
+.wrapIcon {
+  cursor: pointer;
+  display: inline-table;
+  margin-left: 10px;
+}
+
+.wrapIcon .iconFacebook {
+  height: auto;
+  margin-right: 6px;
+  margin-top: 0;
+  transition: all .2s;
+  vertical-align: middle;
+  width: 18px !important;
+}
+
+.wrapIcon.like * {
+  pointer-events: none;
+}
+
+.wrapIcon .amount {
+  display: table-cell;
+  vertical-align: middle;
+  line-height: 1;
+  font-size: 13px;
+}

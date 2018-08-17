@@ -17,16 +17,26 @@
             <div class="desc">Email: <%= @user.email %></div>
             <!--<div class="desc">Birth: <= @user.birth %></div>-->
         </div>
-        <% if user_signed_in? && @user.id == current_user.id %>
-          <div class="text-center profile-buttons">
-            <%= link_to "Edit", edit_user_registration_path, method: :get,
-              class: "btn btn-primary btn-sm", data: {turbolinks: false} %>
-          </div>
+        <% if user_signed_in? %>
+          <% if @user.id == current_user.id %>
+            <div class="text-center profile-buttons">
+              <%= link_to "Edit", edit_user_registration_path, method: :get,
+                class: "btn btn-primary btn-sm", data: {turbolinks: false} %>
+            </div>
+          <% else %>
+            <div id="follow_form" style="margin-top: 20px;">
+              <% if current_user.following?(@user) %>
+                <%= render 'unfollow' %>
+              <% else %>
+                <%= render 'follow' %>
+              <% end %>
+            </div>
+          <% end %>
         <% end %><br>
 
       </div>
     </div>
-    
+
     <div class="col-lg-8 col-sm-8">
       <div class="profile-content">
         <div class="widget article userLists">

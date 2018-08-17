@@ -1,6 +1,4 @@
-<h1>Editing Review</h1>
-
-<%= render 'form', review: @review %>
-
-<%= link_to 'Show', @review %> |
-<%= link_to 'Back', reviews_path %>
+<div class="write-review">
+  <%= render 'form', review: @review, book: @support.find_book,
+    support: @support %>
+</div>

@@ -1,58 +1,158 @@
 <p id="notice"><%= notice %></p>
 <div class="review-details">
   <div class="row">
-    <div class="col-sm-8">
-      <div class="row">
-        <div id="imagecol" class="col-sm-4">
-          <div class="bookCoverContainer">
-            <div class="bookCoverPrimary">
-              <%= link_to book_path(@review.book) do %>
-                <img id="coverImage" alt="<%= @review.book.title %>"
-                  src="<%= @review.book.picture %>">
-              <% end %>
-            </div>
-          </div>
-        </div>
-        
-        <div class="last col-sm-8" id="metacol">
-          <h1 id="bookTitle" class="gr-h1 gr-h1--serif" itemprop="name">
-            <%= @review.title %>
-          </h1>
-          <div id="bookAuthors" class="stacked">
-            <span class="by smallText"><small>by</small> <%= @review.user.name %></span>
-          </div>
-          <div id="descriptionContainer">
-            <div id="description" class="readable stacked" style="right:0">
-              <span><%= @review.content.html_safe %></span>
-            </div>
+    <div class="row">
+      <div id="imagecol" class="col-sm-4">
+        <div class="bookCoverContainer">
+          <div class="bookCoverPrimary">
+            <%= link_to book_path(@review.book) do %>
+              <img id="coverImage" alt="<%= @review.book.title %>"
+                src="<%= @review.book.picture %>">
+            <% end %>
           </div>
         </div>
       </div>
+      
+      <div class="last col-sm-8" id="metacol">
+        <h1 id="bookTitle" class="bookTitle">
+          <%= link_to @review.book.title, book_path(@review.book) %>
+        </h1>
+        <div id="bookAuthors" class="stacked">
+          <span class="by smallText">
+            <% if @review.book.authors.any? %>
+              <small>by</small> 
+              <% @review.book.authors.each do |author| %>
+                <span><%= author.name %>.</span>
+              <% end %>
+            <% end %>
+          </span>
+        </div>
+        
+        <div id="descriptionContainer">
+          <div id="description" class="readable stacked" style="right:0">
+            <span><%= @review.book.description %></span>
+          </div>
+        </div>
+        
+        <div id="details" class="uitext darkGreyText">
+          <div class="">
+            Published <%= @review.book.publish_date.strftime("%Y") %>
+            by <%= @review.book.publisher %>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <div class="col-sm-4"></div>
   </div>
-  <%= @review.title %>
-  <%= @review.content.html_safe %>
-  
-  <% if user_signed_in? && (current_user == @review.user) %>
-    <%= link_to 'Edit', edit_review_path(@review) %> |
-    <%= link_to 'Delete', review_path(@review), method: :delete %> |
-  <% end %>
-  
-  <h2>Comments</h2>
+  <br><br>
   
   <div id="comments">
+    <div class="review row post-content">
+      <% review = @review %>
+      <div class="col-sm-1">
+        <%= link_to user_path(review.user), class:"avatar" do %>
+          <img alt="<%= review.user.name %>" src="<%= review.user.image %>"
+            title="<%= review.user.name %>">
+        <% end %>
+      </div>
+  
+      <div class="col-sm-11">
+        <div class="reviewHeader uitext stacked">
+          <span class="reviewDate createdAt right text-right">
+            <%= review.created_at.strftime("%d %b %Y") %>
+          </span>
+          <span class="reviewUser">
+            <%= link_to review.user.name, user_path(review.user),
+              class: "user" %>
+            <span class="user">rated it</span>
+          </span>
+          
+          <b><p><%= review.title %></p></b>
+        </div>
+      </div>
+
+      <div class="reviewText stacked col-sm-12">
+        <p class="readable">
+          <span><%= review.content %></span>
+        </p>
+        
+        <% if user_signed_in? && (current_user == @review.user) %>
+          <%= link_to 'Edit', edit_review_path(@review), class:"btn btn-info" %>
+          <%= link_to 'Delete', review_path(@review), method: :delete,
+            class:"btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+  
+    <input type="hidden" id="review-id" value="<%= @review.id %>">
     <% if user_signed_in? %>
-      <%= render "comments/form", review: @review, comment: @support.new_comment %>
+      <span class="like">
+        <% if like(@review).present? %>
+          <span class="btn icon-btn btn-info unlikeBtn
+            pmd-ripple-effect pmd-btn-raised"
+            data="<%= @review.id %>" like-id="<%= like(@review).id %>">
+            <i class="fa fa-thumbs-up"></i>
+            Liked
+          </span>&nbsp;
+          <% if @review.likes.size > 0 %>
+            <span class="like-counter like-count-<%= @review.id %>">
+              <%= @review.likes.size %>
+            </span> like(s)
+          <% else %>
+            Be the first to like.
+          <% end %>
+        <% else %>
+          <span class="btn icon-btn btn-default likeBtn
+            pmd-ripple-effect pmd-btn-raised"
+            data="<%= @review.id %>">
+            <i class="fa fa-thumbs-o-up"></i>
+            <span>Like it</span>
+          </span>&nbsp;
+            <% if @review.likes.size > 0 %>
+            <span class="like-counter like-count-<%= @review.id %>">
+              <%= @review.likes.size %>
+            </span> like(s)
+          <% else %>
+            Be the first to like.
+          <% end %>
+        <% end %>
+      </span>
+    <% else %>
+      <span class="like-login">
+        <span class="btn icon-btn pmd-ripple-effect
+          pmd-btn-raised loginBtn">
+          <i class="fa fa-thumbs-o-up"></i>
+          <span>Like</span>
+        </span>&nbsp;
+        <% if @review.likes.size > 0 %>
+          <span class="like-counter like-count-<%= @review.id %>">
+            <%= @review.likes.size %>
+          </span> like(s)
+        <% else %>
+          Be the first to like.
+        <% end %>
+      </span>
+    <% end %><br><br>
+
+  
+    <h2>Comments</h2><hr>
+    <% if user_signed_in? %>
+      <%= render "comments/form", review: @review,
+        comment: @support.new_comment %>
       <div id="comments" class="comments-part">
-        <%= render "comments/comments", review: @review, comments: @support.comments %>
+        <%= render "comments/comments", review: @review,
+          comments: @support.comments %>
       </div>
     <% else %>
       <h3>
         <%= link_to t("user.login"), user_session_path,
         data: {turbolinks: false} %>
         <%= t ".to_comment" %>
-      </h3>
+      </h3><br>
+      <div id="comments" class="comments-part">
+        <%= render "comments/comments", review: @review,
+          comments: @support.comments %>
+      </div>
     <% end %>
   </div>
 </div>

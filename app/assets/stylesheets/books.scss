@@ -1,6 +1,6 @@
 .book-details {
   background: white;
-  margin: 0 auto;
+  margin: -15px 15px 0;
   padding: 30px;
 }
 
@@ -8,7 +8,7 @@
   text-align: center;
 }
 #coverImage {
-  max-width: 150px;
+  max-width: 90%;
   display: block;
   margin: 0 auto 10px;
 }
@@ -22,7 +22,6 @@
 }
 #bookAuthors .smallText, #bookAuthors .authorName {
   color: #333;
-  font-size: 110%;
 }
 #details {
   padding: 5px 0;
@@ -44,4 +43,9 @@
 
 .write-btn {
   margin: 0 !important;
+}
+
+h1.bookTitle {
+  font: italic 27px "Times New Roman", Times, serif !important;
+  margin: 0 0 10px!important;
 }

@@ -1,10 +1,12 @@
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 .book-reviews {
   margin: 50px 0;
 }
 
-.review .imgcol {
-  margin-right: 10px;
-  width: 50px;
+.imgcol {
+  width: 90%;
 }
 
 .left {
@@ -12,16 +14,17 @@
 }
 
 .review .reviewHeader {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .stacked {
   margin-bottom: 10px;
 }
 
-.review .reviewHeader .createdAt {
+.review .reviewHeader .createdAt, .reviewUser {
   position: relative;
-  top: 2px;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 .elementListBrown .reviewDate {
   color: #bbbbbb;
@@ -34,7 +37,7 @@ a.uitext, .uitext a {
 }
 
 .review .reviewHeader .user {
-  font-weight: bold;
+  font-size: 14px;
 }
 
 .friendReviews .review .reviewText {
@@ -43,6 +46,11 @@ a.uitext, .uitext a {
 
 .updateActionLinks a {
   color: #00635d;
+}
+
+.readable {
+  font-size: 14px;
+  margin: 0 0 10px 0;
 }
 
 // form
@@ -62,4 +70,49 @@ a.uitext, .uitext a {
   .pmd-textfield .form-control {
     padding: 0 10px;
   }
+}
+
+.review-details {
+  margin: -15px 15px 0;
+  padding: 30px 40px;
+  background: white;
+  
+  h1 {
+    font-size: 20px;
+    margin: 0 0 10px!important;
+  }
+  
+  .description {
+    font-size: 14px;
+  }
+  
+  
+}
+.updateActionLinks span {
+  color: blue;
+  font-size: 14px;
+}
+
+.like .pmd-ripple-effect {
+  overflow: visible !important;
+}
+
+.icon-btn .fa {
+  padding: 5px !important;
+}
+
+.icon-btn {
+  border-radius: 50px !important;
+  color: #fff !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  padding: 4px 10px 4px 5px !important;
+  
+  .fa-thumbs-o-up {
+    color: #4267B2;
+  }
+}
+
+.likeBtn span, .like-login span {
+  color: #4267B2;
 }

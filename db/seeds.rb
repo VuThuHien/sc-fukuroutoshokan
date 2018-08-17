@@ -32,7 +32,7 @@ end
 
 10.times do |n|
   Author.create!(
-    name: Faker::Name,
+    name: Faker::Name.name,
     bio: Faker::Lorem.paragraph)
 end
 

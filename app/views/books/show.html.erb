@@ -14,11 +14,18 @@
         </div>
         
         <div class="last col-sm-8" id="metacol">
-          <h1 id="bookTitle" class="gr-h1 gr-h1--serif" itemprop="name">
+          <h1 id="bookTitle" class="bookTitle">
             <%= @book.title %>
           </h1>
           <div id="bookAuthors" class="stacked">
-            <span class="by smallText"><small>by</small> <%= @book.authors.first.name %></span>
+            <span class="by smallText">
+              <% if @book.authors.any? %>
+                <small>by</small> 
+                <% @book.authors.each do |author| %>
+                  <span><%= author.name %>.</span>
+                <% end %>
+              <% end %>
+            </span>
           </div>
           <div class="uitext stacked hreview-aggregate">
             <a class="gr-hyperlink" href="#other_reviews">
@@ -37,37 +44,28 @@
           
           <div id="details" class="uitext darkGreyText">
             <div class="">
-              <span itemprop="bookFormat">Paperback</span>, 
-              <span itemprop="numberOfPages">611 pages</span>
-            </div>
-    
-            <div class="">
-                Published
-            2014
-             by Alpha book
-    
-                <nobr class="greyText">
-                  (first published October 25th 2011)
-                </nobr>
+              Published <%= @book.publish_date.strftime("%Y") %>
+              by <%= @book.publisher %>
             </div>
             
-            <div class="buttons">
-              <div id="bookDataBox" class="uitext" style=" margin: 10px 0">
-                <div class="clearFloats">
-                  <div class="infoBoxRowTitle">Original Title</div>
-                  <div class="infoBoxRowItem">Thinking, Fast and Slow</div>
-                </div>
+            <!--<div class="buttons">-->
+            <!--  <div id="bookDataBox" class="uitext" style=" margin: 10px 0">-->
+            <!--    <div class="clearFloats">-->
+            <!--      <div class="infoBoxRowTitle">Original Title</div>-->
+            <!--      <div class="infoBoxRowItem">Thinking, Fast and Slow</div>-->
+            <!--    </div>-->
     
-                <div class="clearFloats">
-                  <div class="infoBoxRowTitle">Edition Language</div>
-                  <div class="infoBoxRowItem" itemprop="inLanguage">Vietnamese</div>
-                </div>
-              </div>
-            </div>
+            <!--    <div class="clearFloats">-->
+            <!--      <div class="infoBoxRowTitle">Edition Language</div>-->
+            <!--      <div class="infoBoxRowItem" itemprop="inLanguage">Vietnamese</div>-->
+            <!--    </div>-->
+            <!--  </div>-->
+            <!--</div>-->
           </div><br>
           
-          <%= link_to new_review_path(book_id: @book.id), data: {turbolinks: false},
-            class: "btn pmd-ripple-effect btn-info", title: "Write review" do %>
+          <%= link_to new_review_path(book_id: @book.id),
+            data: {turbolinks: false}, title: "Write review",
+            class: "btn pmd-ripple-effect btn-info" do %>
             <p class="hidden-xs write-btn">Review this book</p>
             <i class="fa fa-pencil-square-o hidden-sm hidden-md hidden-lg"></i>
           <% end %>
@@ -76,53 +74,160 @@
   
       <!--show review-->
       <div class="book-reviews">
-        <h2 >Reviews</h2>
+        <h2>Reviews</h2>
         <div class="friendReviews elementListBrown">
-          <div class="section firstReview">
-            <div id="review_261437465" class="review">
-              <a title="" class="left imgcol" href="">
-                <img alt="R.A. Schneider" src="https://images.gr-assets.com/users/1515690666p2/965207.jpg">
-              </a>
-          
-              <div class="left bodycol">
-                <div class="reviewHeader uitext stacked">
-                  <span class="reviewDate createdAt right text-right">Jan 13, 2012</span>
-                  <span>
-                    <a title="R.A. Schneider" class="user" name="R.A. Schneider" href="#">
-                      R.A. Schneider
-                    </a>
-                  </span>
-          
-                  rated it
+          <% if user_signed_in? %>
+            <% if current_user.following.any? %>
+              <% current_user.following.each do |followed| %>
+                <% followed.reviews.order(created_at: :desc).each do |review| %>
+                  <div class="section firstReview">
+                    <div class="review row post-content">
+                      <div class="col-sm-2">
+                        <%= link_to user_path(review.user), class:"avatar" do %>
+                          <img alt="<%= review.user.name %>" src="<%= review.user.image %>"
+                            title="<%= review.user.name %>">
+                        <% end %>
+                      </div>
                   
-                  <span class="greyText">&nbsp;·&nbsp;</span>
-                </div>
-    
-                <div class="reviewText stacked">
-                  <span id="reviewTextContainer261437465" class="readable">
-                    <span id="">In the last few years two books took me FOREVER to get through.</span>
-                  </span>
-                </div>
-    
-                <div class="reviewFooter uitext buttons">
-                  <div class="updateActionLinks">
-                    <span class="likeItContainer" id="like_container_review_261437465">
-                      <a href="#">
-                        <span class="likesCount userHasRating">564 likes</span>
-                      </a>&nbsp;·&nbsp;
-                      <span class="loadingLinkSpan">
-                        <a class="jsLike like_it gr-button gr-button--small minor loadingLink" href="#">Unlike</a>
-                      </span>
-                    </span>&nbsp;·&nbsp;
-                    <a href="#" >26 comments</a>&nbsp;·&nbsp;
-                    <a href="#">see review</a>
+                      <div class="col-sm-10">
+                        <div class="reviewHeader uitext stacked">
+                          <span class="reviewDate createdAt right text-right">
+                            <%= review.created_at.strftime("%d %b %Y") %>
+                          </span>
+                          <span>
+                            <%= link_to review.user.name, user_path(review.user),
+                              class: "user" %>
+                          </span>
+                          rated it
+                          
+                          <b><p><%= review.title %></p></b>
+                        </div>
+                      </div>
+            
+                      <div class="reviewText stacked col-sm-12">
+                        <p class="readable">
+                          <span>
+                            <%= truncate_html(review.content, length: 350, omission: ' ...') %>
+                          </span>
+                          <span><%= link_to "read full", review_path(review) %></span>
+                        </p>
+                        <div class="reviewFooter uitext buttons">
+                          <div class="updateActionLinks">
+                            <span class="likeItContainer" id="like_container_review_261437465">
+                              <span class="likesCount userHasRating">
+                                <%= review.likes.count %> like(s)
+                              </span>
+                            </span>&nbsp;·&nbsp;
+                            <span><%= review.comments.count %> comments</span>
+                            
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div><hr>
+                <% end %>
+              <% end %>
+            <% else %>
+              <% @book.reviews.each do |review| %>
+                <div class="section firstReview">
+                  <div class="review row post-content">
+                    <div class="col-sm-2">
+                      <%= link_to user_path(review.user), class:"avatar" do %>
+                        <img alt="<%= review.user.name %>" src="<%= review.user.image %>"
+                          title="<%= review.user.name %>">
+                      <% end %>
+                    </div>
+                
+                    <div class="col-sm-10">
+                      <div class="reviewHeader uitext stacked">
+                        <span class="reviewDate createdAt right text-right">
+                          <%= review.created_at.strftime("%d %b %Y") %>
+                        </span>
+                        <span>
+                          <%= link_to review.user.name, user_path(review.user), class: "user" %>
+                        </span>
+                        rated it
+
+                        <b><p><%= review.title %></p></b>
+                      </div>
+                    </div>
+          
+                    <div class="reviewText stacked col-sm-12">
+                      <p class="readable">
+                        <span>
+                          <%= truncate_html(review.content, length: 350, omission: ' ...') %>
+                        </span>
+                        <span><%= link_to "read full", review_path(review) %></span>
+                      </p>
+                      <div class="reviewFooter uitext buttons">
+                        <div class="updateActionLinks">
+                          <span class="likeItContainer" id="like_container_review_261437465">
+                            <span class="likesCount userHasRating">
+                              <%= review.likes.count %> like(s)
+                            </span>
+                          </span>&nbsp;·&nbsp;
+                          <span><%= review.comments.count %> comments</span>
+                          
+                        </div>
+                      </div>
+                    </div>
+                    
                   </div>
-                </div>
-              </div>
-              <div class="clear"></div>
-            </div>
+                </div><hr>
+              <% end %>
+            <% end %>
+          <% else %>
+            <% @book.reviews.each do |review| %>
+              <div class="section firstReview">
+                <div class="review row post-content">
+                  <div class="col-sm-2">
+                    <%= link_to user_path(review.user), class:"avatar" do %>
+                      <img alt="<%= review.user.name %>" src="<%= review.user.image %>"
+                        title="<%= review.user.name %>">
+                    <% end %>
+                  </div>
+              
+                  <div class="col-sm-10">
+                    <div class="reviewHeader uitext stacked">
+                      <span class="reviewDate createdAt right text-right">
+                        <%= review.created_at.strftime("%d %b %Y") %>
+                      </span>
+                      <span class="user">
+                        <%= link_to review.user.name, user_path(review.user) %>
+                        rated it
+                      </span>
+                      
+                    
+                      <b><p><%= link_to review.title, review_path(review) %></p></b>
+                    </div>
+                  </div>
         
-          </div>
+                  <div class="reviewText stacked col-sm-12">
+                    <p class="readable">
+                      <span>
+                        <%= truncate_html(review.content, length: 350, omission: ' ...') %>
+                      </span>
+                      <span><%= link_to "read full", review_path(review) %></span>
+                    </p>
+                    <div class="reviewFooter uitext buttons">
+                      <div class="updateActionLinks">
+                        <span class="likeItContainer" id="like_container_review_261437465">
+                          <span class="likesCount userHasRating">
+                            <%= review.likes.count %> like(s)
+                          </span>
+                        </span>&nbsp;·&nbsp;
+                        <span><%= review.comments.count %> comments</span>
+                        
+                      </div>
+                    </div>
+                  </p>
+
+                  
+                </div>
+              </div><hr>
+            <% end %>
+          <% end %>
         </div>
       </div>
       

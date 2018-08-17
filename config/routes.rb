@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
+<<<<<<< HEAD
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :admin_users
   devise_for :users
+=======
+  devise_for :users, controllers: { registrations: :registrations }
+>>>>>>> 2a9ebefbecee17e90600ded03e162593a200e917
   
   root "static_pages#show", page: "home"
   
@@ -21,8 +25,12 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :comments
   get "users/:id/reviews" => "users#reviews", as: :user_all_reviews
+<<<<<<< HEAD
   get "static_pages/about", as: :about
   get "static_pages/easter", as: :easter
   
   get 'search', to: 'books#search'
+=======
+  resources :relationships, only: [:create, :destroy]
+>>>>>>> 2a9ebefbecee17e90600ded03e162593a200e917
 end

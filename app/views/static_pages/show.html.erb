@@ -1,163 +1,71 @@
 <% provide(:title) %>
 <div class="body">
   <div class="body_resize">
-    <div class="row">
-      <div class="left col-sm-8">
-        <% if user_signed_in? %>
-          <% if current_user.following.any? %>
-            <% current_user.following.each do |followed| %>
-              <% followed.reviews.order(created_at: :desc).each do |review| %>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <img src="<%= review.book.picture %>" class="home-book-image">
-                  </div>
-                  <div class="col-sm-8">
-                    <h2>
-                      <%= link_to review_path(review), data: {turbolinks: false} do %>
-                        <%= review.title %>
-                      <% end %>
-                    </h2>
-                    <span><b><%= review.book.title %></b></span><br>
-                    <span class="post-date">
-                      <% if review.book.categories.any? %>
-                        <% review.book.categories.each do |category| %>
-                          <%= link_to t(category.title), category_path(category),
-                            data: {turbolinks: false} %>
-                          <% unless category == review.book.categories.last %>/<% end %>
-                        <% end %>
-                      <% end %>
-                    </span><br>
-                    <span class="post-date">
-                      Posted by <%= link_to review.user.name, user_path(review.user),
-                      data: {turbolinks: false} %>
-                    </span>&nbsp;&nbsp;|
-                    <div class="wrapIcon comment">
-                      <span class="fa fa-comments"></span>&nbsp;
-                      <p class="amount comment ng-binding">
-                        <%= review.comments.count %>
-                      </p>
-                    </div>&nbsp;&nbsp;|
-                    <div class="wrapIcon like">
-                      <span class="fa fa-thumbs-o-up"></span>&nbsp;
-                      <p class="amount like ng-binding">
-                        <%= review.likes.count %>
-                      </p>
-                    </div>
-                    <p>
-                      <%= truncate_html(review.content, length: 350, omission: ' ...more') %>
-                    </p>
-                  </div>
-                </div>
-                <hr>
-              <% end %>
-            <% end %>
-          <% else %>
-            <% @reviews.each do |review| %>
-              <div class="row">
-                <div class="col-sm-4">
-                  <img src="<%= review.book.picture %>" class="home-book-image">
-                </div>
-                <div class="col-sm-8">
-                  <h2>
-                    <%= link_to review_path(review), data: {turbolinks: false} do %>
-                      <%= review.title %>
-                    <% end %>
-                  </h2>
-                  <span><b><%= review.book.title %></b></span><br>
-                  <span class="post-date">
-                    <% if review.book.categories.any? %>
-                      <% review.book.categories.each do |category| %>
-                        <%= link_to t(category.title), category_path(category),
-                          data: {turbolinks: false} %>
-                        <% unless category == review.book.categories.last %>/<% end %>
-                      <% end %>
-                    <% end %>
-                  </span><br>
-                  <span class="post-date">
-                    Posted by <%= link_to review.user.name, user_path(review.user),
-                    data: {turbolinks: false} %>
-                  </span>&nbsp;&nbsp;|
-                  <div class="wrapIcon comment">
-                    <span class="fa fa-comments"></span>&nbsp;
-                    <p class="amount comment ng-binding">
-                      <%= review.comments.count %>
-                    </p>
-                  </div>&nbsp;&nbsp;|
-                  <div class="wrapIcon like">
-                    <span class="fa fa-thumbs-o-up"></span>&nbsp;
-                    <p class="amount like ng-binding">
-                      <%= review.likes.count %>
-                    </p>
-                  </div>
-                  <p>
-                    <%= truncate_html(review.content, length: 350, omission: ' ...more') %>
-                  </p>
-                </div>
-              </div>
-              <hr>
+    <div class="left">
+      <% @reviews.each do |review| %>
+        <img src="<%= review.book.picture %>" alt="" width="80" height="95">
+        <h2>
+          <%= link_to review_path(review), data: {turbolinks: false} do %>
+            <%= review.title %>
+          <% end %>
+        </h2>
+        <span class="post-date">
+          <% if review.book.categories.any? %>
+            <% review.book.categories.each do |category| %>
+              <%= link_to t(category.title), category_path(category),
+                data: {turbolinks: false} %>
+              <% unless category == review.book.categories.last %>/<% end %>
             <% end %>
           <% end %>
-  
-        <% else %>
-          <% @reviews.each do |review| %>
-            <div class="row">
-              <div class="col-sm-4">
-                <img src="<%= review.book.picture %>" class="home-book-image">
-              </div>
-              <div class="col-sm-8">
-                <h2>
-                  <%= link_to review_path(review), data: {turbolinks: false} do %>
-                    <%= review.title %>
-                  <% end %>
-                </h2>
-                <span><b><%= review.book.title %></b></span><br>
-                <span class="post-date">
-                  <% if review.book.categories.any? %>
-                    <% review.book.categories.each do |category| %>
-                      <%= link_to t(category.title), category_path(category),
-                        data: {turbolinks: false} %>
-                      <% unless category == review.book.categories.last %>/<% end %>
-                    <% end %>
-                  <% end %>
-                </span><br>
-                <span class="post-date">
-                  Posted by <%= link_to review.user.name, user_path(review.user),
-                  data: {turbolinks: false} %>
-                </span>&nbsp;&nbsp;|
-                <div class="wrapIcon comment">
-                  <span class="fa fa-comments"></span>&nbsp;
-                  <p class="amount comment ng-binding">
-                    <%= review.comments.count %>
-                  </p>
-                </div>&nbsp;&nbsp;|
-                <div class="wrapIcon like">
-                  <span class="fa fa-thumbs-o-up"></span>&nbsp;
-                  <p class="amount like ng-binding">
-                    <%= review.likes.count %>
-                  </p>
-                </div>
-                <p>
-                  <%= truncate_html(review.content, length: 350, omission: ' ...more') %>
-                </p>
-              </div>
-            </div>
-            <hr>
-          <% end %>
-        <% end %>
-      </div>
-  
-      <div class="right col-sm-4">
-        <h3>Top books</h3>
-        <div class="bg"></div>
-        <ul class="sponsors">
-          <% @top_books.each do |book| %>
-            <li class="sponsors">
-              <%= book.title %> (<%= book.average_rate %>)
-            </li>
-          <% end %>
-        </ul>
-      </div>
-      <div class="clr"></div>
+        </span><br>
+
+        <span class="post-date">
+          Posted by <%= link_to review.user.name, user_path(review.user),
+          data: {turbolinks: false} %>
+        </span>&nbsp;&nbsp;|
+        <div class="wrapIcon comment">
+          <span class="fa fa-comments"></span>&nbsp;
+          <p class="amount comment ng-binding">
+            <%= review.comments.count %>
+          </p>
+        </div>&nbsp;&nbsp;|
+        <div class="wrapIcon like">
+          <span class="fa fa-thumbs-o-up"></span>&nbsp;
+          <p class="amount like ng-binding">
+            <%= review.likes.count %>
+          </p>
+        </div>
+        <p>
+          <%= truncate_html(review.content, length: 350, omission: ' ...more') %>
+        </p>
+        <hr>
+      <% end %>
     </div>
+
+    <div class="right">
+      <h3>Sidebar Menu</h3>
+      <div class="bg"></div>
+      <ul>
+        <li><a href="#">Home</a></li>
+      </ul>
+      <p>&nbsp;</p>
+      <h3>Sponsors</h3>
+      <div class="bg"></div>
+      <ul class="sponsors">
+        <li class="sponsors"><a href="#">Lorem ipsum dolor</a><br />
+          Donec libero. Suspendisse bibendum</li>
+        <li class="sponsors"><a href="#">Dui pede condimentum</a><br />
+          Phasellus suscipit, leo a pharetra</li>
+        <li class="sponsors"><a href="#">Condimentum lorem</a><br />
+          Tellus eleifend magna eget</li>
+        <li class="sponsors"><a href="#">Fringilla velit magna</a><br />
+          Curabitur vel urna in tristique</li>
+        <li class="sponsors"><a href="#">Suspendisse bibendum</a><br />
+          Cras id urna orbi tincidunt orci ac</li>
+        <li class="sponsors"><a href="#">Donec mattis</a><br />
+          purus nec placerat bibendum</li>
+      </ul>
+    </div>
+    <div class="clr"></div>
   </div>
 </div>

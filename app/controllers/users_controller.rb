@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user
+  before_action :find_user, except: :index
   
   def show
     per_page = params[:page]
@@ -25,7 +25,23 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
   
+  def index
+        # @users = User.all
+        @q = User.ransack(params[:q])
+        @users = @q.result(distinct: true)
+  end
+  def show
+      @user = User.find(params[:id])
+  end
+  def search
+      @q = User.search(search_params)
+      @users = @q.result(distinct: true)
+  end
+
   private
+  def search_params
+      params.require(:q).permit!
+  end
 
   def find_user
     @user = User.find_by id: params[:id]

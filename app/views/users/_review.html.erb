@@ -15,12 +15,9 @@
     <h3 class="title-font user-review-title">
       <%= link_to review_path(review), data: {turbolinks: false} do %>
         <%= review.book.title %>
-        <span class="movie-year">
-          (<%= review.book.publish_date.strftime("%Y") %>):
-        </span>
-        <%= review.title %>
       <% end %>
     </h3>
+    <b><%= review.title %></b>
     <div class="details">
       <span>
         <%= t "reviews.index.reviewer" %>

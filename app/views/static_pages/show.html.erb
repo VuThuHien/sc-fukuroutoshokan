@@ -1,4 +1,6 @@
 <% provide(:title) %>
+<div class="slogan">
+</div>
 <div class="body">
   <div class="body_resize">
     <div class="row">
@@ -14,10 +16,10 @@
                   <div class="col-sm-8">
                     <h2>
                       <%= link_to review_path(review), data: {turbolinks: false} do %>
-                        <%= review.title %>
+                        <%= review.book.title %>
                       <% end %>
                     </h2>
-                    <span><b><%= review.book.title %></b></span><br>
+                    <span><b><%= review.title %></b></span><br>
                     <span class="post-date">
                       <% if review.book.categories.any? %>
                         <% review.book.categories.each do |category| %>
@@ -28,9 +30,16 @@
                       <% end %>
                     </span><br>
                     <span class="post-date">
-                      Posted by <%= link_to review.user.name, user_path(review.user),
-                      data: {turbolinks: false} %>
+                      Reviewed by 
+                      <%= link_to review.user.name, user_path(review.user),
+                        data: {turbolinks: false} %>
                     </span>&nbsp;&nbsp;|
+                    <div class="wrapIcon comment">
+                      <span class="glyphicon glyphicon-time amount"></span>
+                      <span title="<%= review.created_at.to_s %>" class="amount">
+                        <%= review.created_at.strftime("%d %b %Y") %>
+                      </span>
+                    </div>&nbsp;&nbsp;|
                     <div class="wrapIcon comment">
                       <span class="fa fa-comments"></span>&nbsp;
                       <p class="amount comment ng-binding">
@@ -44,7 +53,7 @@
                       </p>
                     </div>
                     <p>
-                      <%= truncate_html(review.content, length: 350, omission: ' ...more') %>
+                      <%= truncate_html(review.content, length: 350, omission: ' ...') %>
                     </p>
                   </div>
                 </div>
@@ -60,10 +69,10 @@
                 <div class="col-sm-8">
                   <h2>
                     <%= link_to review_path(review), data: {turbolinks: false} do %>
-                      <%= review.title %>
+                      <%= review.book.title %>
                     <% end %>
                   </h2>
-                  <span><b><%= review.book.title %></b></span><br>
+                  <span><b><%= review.title %></b></span><br>
                   <span class="post-date">
                     <% if review.book.categories.any? %>
                       <% review.book.categories.each do |category| %>
@@ -74,9 +83,15 @@
                     <% end %>
                   </span><br>
                   <span class="post-date">
-                    Posted by <%= link_to review.user.name, user_path(review.user),
+                    Reviewed by <%= link_to review.user.name, user_path(review.user),
                     data: {turbolinks: false} %>
                   </span>&nbsp;&nbsp;|
+                  <div class="wrapIcon comment">
+                    <span class="glyphicon glyphicon-time amount"></span>
+                    <span title="<%= review.created_at.to_s %>" class="amount">
+                      <%= review.created_at.strftime("%d %b %Y") %>
+                    </span>
+                  </div>&nbsp;&nbsp;|
                   <div class="wrapIcon comment">
                     <span class="fa fa-comments"></span>&nbsp;
                     <p class="amount comment ng-binding">
@@ -90,7 +105,7 @@
                     </p>
                   </div>
                   <p>
-                    <%= truncate_html(review.content, length: 350, omission: ' ...more') %>
+                    <%= truncate_html(review.content, length: 350, omission: ' ...') %>
                   </p>
                 </div>
               </div>
@@ -107,10 +122,10 @@
               <div class="col-sm-8">
                 <h2>
                   <%= link_to review_path(review), data: {turbolinks: false} do %>
-                    <%= review.title %>
+                    <%= review.book.title %>
                   <% end %>
                 </h2>
-                <span><b><%= review.book.title %></b></span><br>
+                <span><b><%= review.title %></b></span><br>
                 <span class="post-date">
                   <% if review.book.categories.any? %>
                     <% review.book.categories.each do |category| %>
@@ -121,9 +136,15 @@
                   <% end %>
                 </span><br>
                 <span class="post-date">
-                  Posted by <%= link_to review.user.name, user_path(review.user),
+                  Reviewed by <%= link_to review.user.name, user_path(review.user),
                   data: {turbolinks: false} %>
                 </span>&nbsp;&nbsp;|
+                <div class="wrapIcon comment">
+                  <span class="glyphicon glyphicon-time amount"></span>
+                  <span title="<%= review.created_at.to_s %>" class="amount">
+                    <%= review.created_at.strftime("%d %b %Y") %>
+                  </span>
+                </div>&nbsp;&nbsp;|
                 <div class="wrapIcon comment">
                   <span class="fa fa-comments"></span>&nbsp;
                   <p class="amount comment ng-binding">
@@ -137,7 +158,7 @@
                   </p>
                 </div>
                 <p>
-                  <%= truncate_html(review.content, length: 350, omission: ' ...more') %>
+                  <%= truncate_html(review.content, length: 350, omission: ' ...') %>
                 </p>
               </div>
             </div>
@@ -148,14 +169,22 @@
   
       <div class="right col-sm-4">
         <h3>Top books</h3>
-        <div class="bg"></div>
-        <ul class="sponsors">
-          <% @top_books.each do |book| %>
-            <li class="sponsors">
-              <%= book.title %> (<%= book.average_rate %>)
-            </li>
-          <% end %>
-        </ul>
+        <% @top_books.each do |book| %>
+        　<div class="row">
+            <div class="col-sm-4">
+              <img src="<%= book.try :picture %>" class="home-book-image">
+            </div>
+            <div class="col-sm-8">
+              <h3 class="home-book-title"><%= book.title %></h3>
+              <% if book.authors.any? %>
+                <span>by </span>
+                <% book.authors.each do |author| %>
+                  <span><%= author.name %>.</span>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
       <div class="clr"></div>
     </div>

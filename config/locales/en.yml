@@ -1,5 +1,5 @@
 en:
-  hello: "Hello world"
+  app_name: "Fukurou Toshokan"
   home:
     title: Fukurou Toshokan
     subtit: Books and reviews
@@ -17,7 +17,7 @@ en:
     update: Save changes
     home: Home
     books: Books
-    reviews: Reviews
+    reviews: My Reviews
     favorites: Favorites
     settings: Settings
     write_review: Write review

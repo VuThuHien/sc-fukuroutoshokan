@@ -184,11 +184,10 @@
     padding-top: 0;
     overflow: hidden;
     text-align: center;
-    background-color: rgba(214, 224, 226, 0.2);
+    background-color: white;
 }
 
 .card.hovercard .cardheader {
-    background: url("http://lorempixel.com/850/280/nature/4/");
     background-size: cover;
     height: 135px;
 }
@@ -339,4 +338,8 @@
   font-weight: 600;
   text-transform: uppercase;
   width: 50%;
+}
+
+.user-page {
+  margin: 30px;
 }

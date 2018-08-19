@@ -17,4 +17,5 @@
  *= require owl.carousel/dist/assets/owl.carousel.min
  *= require propellerkit/components/datetimepicker/css/bootstrap-datetimepicker
  *= require propellerkit/components/select2/css/pmd-select2
+ *= require raty-js/lib/jquery.raty
  */

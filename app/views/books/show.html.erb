@@ -10,6 +10,21 @@
                   src="<%= @book.picture %>">
               <% end %>
             </div>
+            
+            <p class="user-rate">Rate this book:</p>
+            <input type="hidden" id="is_rate" value="<%= rate(@book).present? %>">
+            <div class="hidden current-book-id" id="<%= @book.id %>"></div>
+            <div id="rate">
+              <% (1..(load_rate author_rate(@book, current_user)).first).each do |s| %>
+                <img src="/assets/star-on" class="rate">
+              <% end  %>
+              <% (1..(load_rate author_rate(@book, current_user)).second).each do |s| %>
+                <img src="/assets/star-half" class="rate">
+              <% end  %>
+              <% (1..(load_rate author_rate(@book, current_user)).last).each do |s| %>
+                <img src="/assets/star-off" class="rate">
+              <% end %>
+            </div>
           </div>
         </div>
         
@@ -27,13 +42,14 @@
               <% end %>
             </span>
           </div>
-          <div class="uitext stacked hreview-aggregate">
-            <a class="gr-hyperlink" href="#other_reviews">
-              <span class="count value-title" title="7171">
-                <%= @book.reviews.count %>
-              </span>
-              Reviews
-            </a>
+          <div class="uitext stacked average">
+            <span class="average-rate" data-score="<%= @book.average_rate %>"></span>
+            (<%= @book.rates.count %> Ratings)
+            <span class="bullet time-ago-bullet" aria-hidden="true">&nbsp;•&nbsp;</span>
+            <span class="count value-title" title="7171">
+              <%= @book.reviews.count %>
+            </span>
+            Reviews
           </div>
           
           <div id="descriptionContainer">
@@ -44,23 +60,9 @@
           
           <div id="details" class="uitext darkGreyText">
             <div class="">
-              Published <%= @book.publish_date.strftime("%Y") %>
-              by <%= @book.publisher %>
+              Published <%= @book.publish_date.strftime("%d %b %Y") %>
+              by <b><%= @book.publisher %></b>
             </div>
-            
-            <!--<div class="buttons">-->
-            <!--  <div id="bookDataBox" class="uitext" style=" margin: 10px 0">-->
-            <!--    <div class="clearFloats">-->
-            <!--      <div class="infoBoxRowTitle">Original Title</div>-->
-            <!--      <div class="infoBoxRowItem">Thinking, Fast and Slow</div>-->
-            <!--    </div>-->
-    
-            <!--    <div class="clearFloats">-->
-            <!--      <div class="infoBoxRowTitle">Edition Language</div>-->
-            <!--      <div class="infoBoxRowItem" itemprop="inLanguage">Vietnamese</div>-->
-            <!--    </div>-->
-            <!--  </div>-->
-            <!--</div>-->
           </div><br>
           
           <%= link_to new_review_path(book_id: @book.id),
@@ -98,7 +100,7 @@
                             <%= link_to review.user.name, user_path(review.user),
                               class: "user" %>
                           </span>
-                          rated it
+                          <span class="user">rated it</span>
                           
                           <b><p><%= review.title %></p></b>
                         </div>
@@ -147,7 +149,7 @@
                         <span>
                           <%= link_to review.user.name, user_path(review.user), class: "user" %>
                         </span>
-                        rated it
+                        <span class="user">rated it</span>
 
                         <b><p><%= review.title %></p></b>
                       </div>
@@ -195,10 +197,9 @@
                       </span>
                       <span class="user">
                         <%= link_to review.user.name, user_path(review.user) %>
-                        rated it
                       </span>
-                      
-                    
+                      <span class="user">rated it</span>
+
                       <b><p><%= link_to review.title, review_path(review) %></p></b>
                     </div>
                   </div>

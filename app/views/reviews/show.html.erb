@@ -1,13 +1,28 @@
 <p id="notice"><%= notice %></p>
+<% book = @review.book %>
 <div class="review-details">
   <div class="row">
     <div class="row">
       <div id="imagecol" class="col-sm-4">
         <div class="bookCoverContainer">
           <div class="bookCoverPrimary">
-            <%= link_to book_path(@review.book) do %>
-              <img id="coverImage" alt="<%= @review.book.title %>"
-                src="<%= @review.book.picture %>">
+            <%= link_to book_path(book) do %>
+              <img id="coverImage" alt="<%= book.title %>"
+                src="<%= book.picture %>">
+            <% end %>
+          </div>
+          <p class="user-rate">Rate this book:</p>
+          <input type="hidden" id="is_rate" value="<%= rate(book).present? %>">
+          <div class="hidden current-book-id" id="<%= book.id %>"></div>
+          <div id="rate">
+            <% (1..(load_rate author_rate(book, current_user)).first).each do |s| %>
+              <img src="/assets/star-on" class="rate">
+            <% end  %>
+            <% (1..(load_rate author_rate(book, current_user)).second).each do |s| %>
+              <img src="/assets/star-half" class="rate">
+            <% end  %>
+            <% (1..(load_rate author_rate(book, current_user)).last).each do |s| %>
+              <img src="/assets/star-off" class="rate">
             <% end %>
           </div>
         </div>
@@ -15,29 +30,38 @@
       
       <div class="last col-sm-8" id="metacol">
         <h1 id="bookTitle" class="bookTitle">
-          <%= link_to @review.book.title, book_path(@review.book) %>
+          <%= link_to book.title, book_path(book) %>
         </h1>
         <div id="bookAuthors" class="stacked">
           <span class="by smallText">
-            <% if @review.book.authors.any? %>
+            <% if book.authors.any? %>
               <small>by</small> 
-              <% @review.book.authors.each do |author| %>
+              <% book.authors.each do |author| %>
                 <span><%= author.name %>.</span>
               <% end %>
             <% end %>
           </span>
         </div>
+        <div class="uitext stacked average">
+          <span class="average-rate" data-score="<%= book.average_rate %>"></span>
+          (<%= book.rates.count %> Ratings)
+          <span class="bullet time-ago-bullet" aria-hidden="true">&nbsp;•&nbsp;</span>
+          <span class="count value-title" title="7171">
+            <%= book.reviews.count %>
+          </span>
+          Reviews
+        </div>
         
         <div id="descriptionContainer">
           <div id="description" class="readable stacked" style="right:0">
-            <span><%= @review.book.description %></span>
+            <span><%= book.description %></span>
           </div>
         </div>
         
         <div id="details" class="uitext darkGreyText">
           <div class="">
-            Published <%= @review.book.publish_date.strftime("%Y") %>
-            by <%= @review.book.publisher %>
+            Published <%= book.publish_date.strftime("%d %b %Y") %>
+            by <b><%= book.publisher %></b>
           </div>
         </div>
       </div>

@@ -19,4 +19,5 @@
 //= require propellerkit/components/datetimepicker/js/bootstrap-datetimepicker
 //= require ckeditor/init
 //= require propellerkit/components/select2/js/pmd-select2
+//= require raty-js/lib/jquery.raty
 //= require_tree .

@@ -11,8 +11,8 @@ class Review < ActiveRecord::Base
   validates :title, presence: true
   
   def count_like
-    book = Book.find_by id: self.id
-    likes = book.likes
+    review = Review.find_by id: self.id
+    likes = review.likes
     size = likes.size
     return size
   end

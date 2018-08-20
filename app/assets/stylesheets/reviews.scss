@@ -2,7 +2,8 @@
 @import "font-awesome";
 
 .book-reviews {
-  margin: 50px 0;
+  margin: 30px 0;
+  padding: 0 20px;
 }
 
 .imgcol {
@@ -17,14 +18,21 @@
   font-size: 16px;
 }
 
+.review a {
+  color: #136CB2;
+}
 .stacked {
   margin-bottom: 10px;
 }
 
 .review .reviewHeader .createdAt, .reviewUser {
   position: relative;
-  font-size: 14px;
+  font-size: 13px;
   margin-bottom: 10px;
+}
+.reviewHeader p a {
+  color: black !important;
+  font-size: 15px;
 }
 .elementListBrown .reviewDate {
   color: #bbbbbb;
@@ -73,9 +81,10 @@ a.uitext, .uitext a {
 }
 
 .review-details {
-  margin: -15px 15px 0;
+  margin: -15px auto 0;
   padding: 30px 40px;
   background: white;
+  width: 960px;
   
   h1 {
     font-size: 20px;
@@ -89,7 +98,7 @@ a.uitext, .uitext a {
   
 }
 .updateActionLinks span {
-  color: blue;
+  color: #24965c;
   font-size: 14px;
 }
 

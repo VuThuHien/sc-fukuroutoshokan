@@ -7,10 +7,11 @@ class User < ActiveRecord::Base
   
   has_many :reviews
   has_many :comments, dependent: :destroy
+  has_many :rates
   
   validate :validate_username
   validates :name, presence: true
-  
+
   mount_uploader :image, AvatarUploader
   
   has_many :active_relationships, class_name:  "Relationship",
@@ -51,5 +52,16 @@ class User < ActiveRecord::Base
 
   def following?(other_user)
     following.include?(other_user)
+  end
+  
+  # tinh tong so like user nhan duoc
+  def count_getted_like
+    user = User.find_by id: self.id
+    reviews = user.reviews
+    total = 0
+    reviews.each do |review|
+      total += review.count_like
+    end
+    return total
   end
 end

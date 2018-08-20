@@ -20,7 +20,9 @@ pickle-email-*.html
 .project
 /config/database.yml
 /config/secrets.yml
-/public/uploads
+/public/uploads/book
+/public/uploads/user
+/public/uploads/tmp
 config/settings.local.yml
 config/settings/*.local.yml
 config/settings/test.yml

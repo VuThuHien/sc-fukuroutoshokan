@@ -317,6 +317,6 @@ BookCategory.create!([
 50.times do |n|
   Like.create!(
     review_id: Faker::Number.between(301, 307),
-    user_id: Faker::Number.between(11, 20),
+    user_id: Faker::Number.between(1, 15),
   )
 end

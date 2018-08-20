@@ -25,6 +25,10 @@
   margin-bottom: 10px;
 }
 
+.review .btn-danger, .review .btn-success {
+  color: white !important;
+}
+
 .review .reviewHeader .createdAt, .reviewUser {
   position: relative;
   font-size: 13px;

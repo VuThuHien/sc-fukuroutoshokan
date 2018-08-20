@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-8">
 
-      <h1><%= @items.size.to_s + " result(s) for " + "'#{params[:q]}'" %></h1>
+      <h1><%= @books.size.to_s + " result(s) for " + "'#{params[:q]}'" %></h1>
       <% if @books.any? %>
         <hr><br>
         <% @books.each do |book| %>

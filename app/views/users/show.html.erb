@@ -108,7 +108,8 @@
                 <% end %>
               <% else %>
                 <% if user_signed_in? && current_user.id == @user.id %>
-                  <%= t "users.show.no_review" %>
+                  <%= t "users.show.no_review" %><br><br>
+                  <%= link_to "Write review", new_review_path, class:"btn btn-info" %>
                 <% end %>
               <% end %>
             </div>

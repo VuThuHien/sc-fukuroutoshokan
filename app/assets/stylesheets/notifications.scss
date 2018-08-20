@@ -1,0 +1,134 @@
+.notification-popup {
+  background: #E7ECF3;
+  border: solid 1px #A2AFCB;
+  bottom: 11%;
+  display: none;
+  font-size: 1.2em;
+  font-weight: 500;
+  left: 3%;
+  padding: 20px;
+  position: fixed;
+  width: 300px;
+  z-index: 9999;
+  
+  a {
+    color: #000 !important;
+  }
+}
+
+.list-top-movie-item-info .list-top-movie-item-name {
+  color: #f15f43 !important;
+   &:focus, &:hover {
+    color: #a14620 !important;
+  }
+}
+
+.pmd-dropdown-menu-container {
+  width: 300px;
+}
+ .pmd-dropdown .dropdown-menu ul>li>a {
+  white-space: normal !important;
+}
+ .pmd-card-title {
+  margin-bottom: 0 !important;
+}
+ .navbar-inverse .pmd-card-title-text {
+  a, a:hover, a:focus {
+    background: transparent !important;
+    color: #365899 !important;
+    font-weight: 600;
+  }
+   a:hover, a:focus {
+    text-decoration: underline;
+  }
+}
+ .pmd-navbar-right-icon .badge {
+  border-radius: 50%;
+  height: auto;
+  margin: 0;
+  padding: 3px 6px;
+  position: absolute;
+  right: 7px;
+  top: 5px;
+  width: auto;
+}
+ .list-group-item {
+  &.unread {
+    background: #fff !important;
+  }
+   background: #edf2fa;
+  border-top: solid 1px #dddfe2;
+}
+ .list-group-item.active,
+.list-group-item.active:focus,
+.list-group-item.active:hover {
+  border-top: solid 1px #dddfe2 !important;
+}
+ .list-group>li>a:hover,
+.list-group>li>a:focus {
+  background: transparent !important;
+}
+ .list-group>li>a {
+  padding-bottom: 5px !important;
+}
+ .list-group>li>p {
+  color: #AEB3BB;
+  padding: 0 16px;
+}
+ .list-group>li:hover,
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  background: #e4e9f2;
+  color: #111 !important;
+   a {
+    background: transparent !important;
+    color: #111 !important;
+  }
+}
+ .navbar-inverse .list-group li.active a {
+  background: transparent !important;
+  color: #111 !important;
+}
+ li.notifications .badge-info {
+  background-color: #f15f43;
+   &:hover, &:focus {
+    background-color: #a14620;
+  }
+}
+ li.notifications:hover .badge-info {
+  background-color: #fff;
+  color: #000 !important;
+   &:hover, &:focus {
+    background-color: #fff;
+    color: #000 !important;
+  }
+}
+ .navbar-inverse .notifications.open {
+  >a {
+    background: #f15f43 !important;
+    color: #fff !important;
+  }
+   .badge-info {
+    background-color: #fff;
+    color: #000 !important;
+  }
+}
+ .list-group.unread {
+  background: #fff;
+}
+ .all-notification .list-group {
+  margin-bottom: 0;
+   &:last-child {
+    border-bottom: solid 1px #dddfe2 !important;
+  }
+}
+ #list-notifications {
+  li:last-child {
+    border-bottom: solid 1px #dddfe2 !important;
+  }
+}
+ .notification-wrapper .alert-info {
+  border-color: #d4b5b5;
+  margin-top: 20px;
+}

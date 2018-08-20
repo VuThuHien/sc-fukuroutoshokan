@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :comments, dependent: :destroy
   has_many :rates
+  has_many :notifications
   
   validate :validate_username
   validates :name, presence: true
@@ -63,5 +64,9 @@ class User < ActiveRecord::Base
       total += review.count_like
     end
     return total
+  end
+  
+  def not_read_notifications_count
+    self.notifications.where(isRead: false).size
   end
 end

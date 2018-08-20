@@ -11,6 +11,9 @@
 
     <div class="wrapper">
       <%= yield %>
+      <% if user_signed_in? %>
+        <div class="notification-popup"></div>
+      <% end %>
     </div>
 
     <%= render "layouts/footer" %>

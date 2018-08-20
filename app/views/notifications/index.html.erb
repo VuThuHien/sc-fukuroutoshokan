@@ -1,0 +1,47 @@
+<div class="container notification-wrapper">
+  <div class="row">
+    <% if unread_notifications_count == 0 %>
+      <div class="col-sm-12 text-center">
+        <div class="alert alert-success">
+          <strong class="fa fa-fw fa-bell-slash-o"></strong>
+          <%= t ".no_new" %>
+        </div>
+      </div>
+    <% else %>
+      <div class="col-sm-12 text-center">
+        <div class="alert alert-info">
+          <strong class="fa fa-fw fa-bell-o"></strong>
+          <%= unread_notifications_count.to_s + t(".new_notification") %>
+        </div>
+      </div>
+    <% end %>
+    <div class="col-sm-12 noti-header">
+      <h1 class="text-uppercase">
+        <%= t ".your" %>
+      </h1>
+      <hr>
+    </div>
+    <div class="col-sm-12 all-notification">
+      <% @notifications.each do |notification| %>
+        <div class="list-group">
+          <div class="list-group-item notify <%= "unread" if notification.isRead? %>"
+            id="<%= notification.id %>">
+            <%= link_to notification.link_to, data: {turbolinks: false} do %>
+              <h3 class="list-group-item-heading">
+                <%= notification.content.html_safe %>
+              </h3>
+              <p class="list-group-item-text">
+                <%= time_ago_in_words notification.created_at %>
+                <%= t "notifications.ago" %>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <hr>
+    <div class="col-sm-12">
+      <%= paginate @notifications, theme: "twitter-bootstrap-3" %>
+    </div>
+  </div>
+</div>

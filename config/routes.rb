@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   get "search", to: "static_pages#index", as: :search
   get "users/:id/followers", to: "users#followers", as: :user_followers
   get "users/:id/following", to: "users#following", as: :user_following
+  resources :notifications, only: [:index, :update]
 end

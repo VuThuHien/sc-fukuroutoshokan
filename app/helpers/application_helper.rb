@@ -23,4 +23,15 @@ module ApplicationHelper
     movie.rates.find_by user_id: current_user.id
   end
 
+  def unread_notifications_count
+    current_user.notifications.where(isRead: false).size
+  end
+
+  def my_notifications
+    current_user.notifications.order(id: :desc).limit 5
+  end
+
+  def time_ago(date)
+    time_ago_in_words(date)
+  end
 end

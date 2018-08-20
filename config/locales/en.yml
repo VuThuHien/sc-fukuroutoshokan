@@ -111,3 +111,13 @@ en:
     form:
       content: "Write a comment..."
       submit: Submit
+  notifications:
+    notifications: "Notifications"
+    see_all: "See all"
+    ago: "ago"
+    index:
+      no_new: "You currently have no new notifications."
+      your: "Your Notifications"
+    job:
+      has_comment: " commented on your review: "
+      has_like: " liked your review: "

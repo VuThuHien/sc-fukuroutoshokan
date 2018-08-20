@@ -36,3 +36,20 @@ $(document).ready(function(){
     }
   });
 });
+
+$(document).on('click', '.notify', function(){
+  var id = $(this).attr('id');
+  var element = this;
+  $.ajax({
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader('X-CSRF-Token',
+          $('meta[name="csrf-token"]').attr('content'));
+    },
+    type: 'PATCH',
+    url: '/notifications/' + id,
+    success: function(data){
+      $(element).addClass('unread');
+      $('.notification-counter').html(data.unread);
+    }
+  });
+});

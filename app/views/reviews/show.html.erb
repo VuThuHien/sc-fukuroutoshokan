@@ -12,19 +12,23 @@
             <% end %>
           </div>
           <p class="user-rate">Rate this book:</p>
-          <input type="hidden" id="is_rate" value="<%= rate(book).present? %>">
-          <div class="hidden current-book-id" id="<%= book.id %>"></div>
-          <div id="rate">
-            <% (1..(load_rate author_rate(book, current_user)).first).each do |s| %>
-              <img src="/assets/star-on" class="rate">
-            <% end  %>
-            <% (1..(load_rate author_rate(book, current_user)).second).each do |s| %>
-              <img src="/assets/star-half" class="rate">
-            <% end  %>
-            <% (1..(load_rate author_rate(book, current_user)).last).each do |s| %>
-              <img src="/assets/star-off" class="rate">
-            <% end %>
-          </div>
+          <% if user_signed_in? %>
+            <input type="hidden" id="is_rate" value="<%= rate(book).present? %>">
+            <div class="hidden current-book-id" id="<%= book.id %>"></div>
+            <div id="rate">
+              <% (1..(load_rate author_rate(book, current_user)).first).each do |s| %>
+                <img src="/assets/star-on" class="rate">
+              <% end  %>
+              <% (1..(load_rate author_rate(book, current_user)).second).each do |s| %>
+                <img src="/assets/star-half" class="rate">
+              <% end  %>
+              <% (1..(load_rate author_rate(book, current_user)).last).each do |s| %>
+                <img src="/assets/star-off" class="rate">
+              <% end %>
+            </div>
+          <% else %>
+            <%= link_to "Login", user_session_path %> to rate
+          <% end %>
         </div>
       </div>
       
@@ -37,14 +41,17 @@
             <% if book.authors.any? %>
               <small>by</small> 
               <% book.authors.each do |author| %>
-                <span><%= author.name %>.</span>
+                <span><%= author.name %></span>
+                <% unless author == book.authors.last %>,<% end %>
               <% end %>
             <% end %>
           </span>
         </div>
         <div class="uitext stacked average">
           <span class="average-rate" data-score="<%= book.average_rate %>"></span>
-          (<%= book.rates.count %> Ratings)
+          <%= book.average_rate.round(2) %>
+          <span class="bullet time-ago-bullet" aria-hidden="true">&nbsp;•&nbsp;</span>
+          <%= book.rates.count %> Ratings
           <span class="bullet time-ago-bullet" aria-hidden="true">&nbsp;•&nbsp;</span>
           <span class="count value-title" title="7171">
             <%= book.reviews.count %>
@@ -89,6 +96,7 @@
             <%= link_to review.user.name, user_path(review.user),
               class: "user" %>
             <span class="user">rated it</span>
+            <span class="average-rate" data-score="<%= author_rate(book, review.user) %>"></span>
           </span>
           
           <b><p><%= review.title %></p></b>
@@ -101,7 +109,7 @@
         </p>
         
         <% if user_signed_in? && (current_user == @review.user) %>
-          <%= link_to 'Edit', edit_review_path(@review), class:"btn btn-info" %>
+          <%= link_to 'Edit', edit_review_path(@review), class:"btn btn-success" %>
           <%= link_to 'Delete', review_path(@review), method: :delete,
             class:"btn btn-danger" %>
         <% end %>

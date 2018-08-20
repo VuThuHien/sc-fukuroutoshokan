@@ -1,9 +1,10 @@
 .wrapper {
 	margin:10px auto;
+	background: white;
 }
 
 .slogan{
-  height: 350px;
+  height: 300px;
   padding: 0;
   position: static;
   border: 0;
@@ -54,9 +55,13 @@ p.clr, .clr {
 }
 .body_resize h1 {
 	margin:0;
-	padding:26px 0;
-	color:#fff;
-	font:italic bold 40px/1.2em Georgia, "Times New Roman", Times, serif;
+	padding: 20px 5px 0;
+	color: #333333;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.25;
+  text-transform: uppercase;
 }
 .body_resize h1 a, .body_resize h1 a:hover {
 	color:#fff;
@@ -71,80 +76,16 @@ p.clr, .clr {
 	font:italic 12px/1.2em Georgia, "Times New Roman", Times, serif;
 	text-transform:uppercase;
 }
-.search {
-	padding:45px 20px 0 0;
-	margin:0;
-	width:260px;
-	float:right;
-}
-.search form {
-	float:right;
-	padding:0;
-	margin:0;
-}
-.search span {
-	display:block;
-	float:left;
-	width:153px;
-	padding:0 5px;
-}
-.search form .keywords {
-	width:149px;
-	line-height:14px;
-	height:14px;
-	float:left;
-	background:none;
-	border:0;
-	padding:5px 2px;
-	margin:0;
-	font:normal 11px Arial, Helvetica, sans-serif;
-	color:#000;
-}
-.search form .button {
-	float:left;
-	margin:0 0 0 5px;
-	padding:0;
-}
-.menu {
-	padding:10px 0 14px 0;
-	margin:0;
-	width:410px;
-	float:left;
-}
-.menu ul {
-	padding:0;
-	margin:0;
-	list-style:none;
-	border:0;
-	float:left;
-}
-.menu ul li {
-	float:left;
-	margin:0;
-	padding:15px 5px;
-}
-.menu ul li a {
-	float:left;
-	margin:0;
-	padding:0 10px 0 0;
-	color:#575c5c;
-// 	font:normal 17px "Times New Roman", Times, serif;
-	text-decoration:none;
-}
-.menu ul li a:hover {
-	color:#fff;
-}
-.menu ul li a.active {
-	color:#fff;
-}
+
 .body_resize {
 	padding:0 30px;
 	width:100%;
 	background:#fff;
 }
 .body {
-	margin:0;
+	margin:0 auto;
 	padding:0 15px;
+	width: 960px;
 }
 .body h2 {
 	font:italic 23px "Times New Roman", Times, serif;
@@ -182,166 +123,20 @@ p.clr, .clr {
 	padding:0;
 }
 .body a {
-	color:#c05622;
-	text-decoration:none;
+	color: #ec5409;
+	text-decoration: none;
 }
 .body .left {
-	float:left;
-	margin:0;
-	padding:20px 20px 20px 0;
+	float: left;
+	margin: 0;
+	padding: 20px 20px 20px 0;
 }
 .body .right {
-	float:right;
-	margin:0;
-	padding:0 0 20px 0;
+	float: right;
+	margin: 0;
+	padding: 50px 0 0 20px;
 }
-.body .right ul {
-	list-style:none;
-	margin:5px 10px;
-	padding:0;
-}
-.body .right li {
-	font:normal 14px Arial, Helvetica, sans-serif;
-	color:#464646;
-	padding:5px 0;
-}
-.body .right li a {
-	padding:0 0 0 20px;
-	margin:0;
-// 	font:bold 17px "Times New Roman", Times, serif;
-	color:#575c5c;
-	text-decoration:none;
-}
-.body .right li a:hover {
-	color:#c05622;
-	text-decoration:none;
-}
-.body .right ul.sponsors {
-	list-style:none;
-	margin:5px 10px;
-	padding:0;
-}
-.body .right li.sponsors {
-// 	font:normal 12px "Times New Roman", Times, serif;
-	color:#575c5c;
-	padding:8px 0 8px 0;
-}
-.body .right li.sponsors a {
-	padding:0 0 0 20px;
-	margin:0;
-// 	font:normal 14px "Times New Roman", Times, serif;
-	color:#575c5c;
-	text-decoration:none;
-}
-.body .right li.sponsors span {
-	color:#c05622;
-// 	font:bold 13px "Times New Roman", Times, serif;
-}
-.widget_calendar ul {
-	margin:0;
-	padding:0;
-}
-.widget_calendar ul li {
-	margin:0;
-	padding:0;
-	list-style:none;
-	background:none;
-}
-.widget_calendar table {
-	width:100%;
-}
-.widget_calendar table td {
-	text-align:center;
-	padding:3px;
-}
-.widget_calendar caption {
-	padding:5px 0;
-	color:#575c5c;
-// 	font:bold 14px "Times New Roman", Times, serif;
-	text-transform:uppercase;
-}
-.widget_calendar table td a {
-	text-decoration:none;
-	background:none;
-	padding:2px 5px;
-	margin:0;
-	font:normal 12px "Times New Roman", Times, serif;
-	color:#575c5c;
-}
-.widget_calendar table td a:hover {
-	background:#575c5c;
-	color:#fff;
-	text-decoration:none;
-}
-.widget_calendar table td a.active {
-	background:#575c5c;
-	color:#fff;
-	text-decoration:none;
-}
-.FBG_resize {
-	margin:0 auto;
-	padding:0;
-	width:930px;
-	background:#fff;
-}
-.FBG {
-	margin:0;
-	padding:0;
-}
-.FBG img {
-	float:left;
-	margin:5px 20px 5px 0;
-	padding:0;
-}
-.FBG img.floated {
-	float:right;
-	margin:5px 0 5px 10px;
-	padding:0;
-}
-.FBG h2 {
-	color:#c05622;
-	font:normal 30px "Times New Roman", Times, serif;
-	padding:3px 0;
-	margin:5px 0 15px 0;
-}
-.FBG p {
-	color:#575c5c;
-	font:normal 14px "Times New Roman", Times, serif;
-	padding:5px 0;
-	margin:0;
-	line-height:1.6em;
-}
-.FBG a {
-	color:#ea7d1b;
-	text-decoration:none;
-	font:bold 12px Arial, Helvetica, sans-serif;
-}
-.FBG ul {
-	list-style:none;
-	float:left;
-	padding:0;
-	margin:10px 0;
-}
-.FBG li {
-	padding:4px 1px;
-	margin:0;
-}
-.FBG li a {
-	color:#575c5c;
-	font:normal 13px "Times New Roman", Times, serif;
-	text-decoration:none;
-	padding:0 0 0 10px;
-}
-.FBG li a:hover {
-	color:#c05622;
-	text-decoration:none;
-}
-.FBG .blok {
-	width:270px;
-	float:left;
-	padding:5px 20px;
-	margin:0;
-}
+
 .footer_resize {
 	margin:0 auto;
 	padding:0;
@@ -505,4 +300,126 @@ p.response {
 
 .home-book-title {
   padding: 10px 5px 0 0 !important;
+}
+
+//slide
+.new-movies-slide .owl-nav {
+  i {
+    font-size: 30px;
+    position: absolute;
+    top: 40%;
+  }
+
+  .owl-prev i {
+    left: -50px;
+  }
+
+  .owl-next i {
+    right: -50px;
+  }
+}
+
+.movie-items {
+  overflow: hidden;
+  position: relative;
+
+  img {
+    height: 230px;
+    overflow: hidden;
+    text-align: center;
+    width: 100% !important;
+  }
+
+  .caption-overlay {
+    padding: 10px 0;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .primary {
+    font-size: 22px;
+    font-weight: 700;
+    height: 60px;
+    line-height: 1.3em;
+    max-height: 60px;
+    text-overflow: ellipsis;
+  }
+
+  .secondary {
+    font-size: 12px;
+  }
+}
+
+.movie-caption {
+  a {
+    color: #ff2b03 !important;
+    font-size: 16px;
+    text-overflow: ellipsis; 
+    overflow: hidden; 
+    white-space: nowrap;
+  }
+}
+
+.book_baloon {
+    position: absolute;
+    top: -8px;
+    left: -11px;
+    width: 135px;
+    height: 60px;
+    overflow: hidden;
+    padding: 18px 4px 0 20px;
+    background: url("http://www.honzuki.jp/common/img/book_review_bg.png") no-repeat left top;
+}
+
+// list user
+#ranking-list {
+  margin-right: 10px;
+  border: 2px solid #fece21;
+  background: #ffffff;
+}
+
+#ranking-list .title {
+    padding: 7px 10px 9px 33px;
+    background: url("http://www.honzuki.jp/common/img/ic_crown.png") #fff4bf no-repeat 10px center !important;
+    color: #333333;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.userinfo {
+  border-top: 1px dotted #fece21;
+  
+  img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+  }
+}
+
+.userinfo .name {
+    padding: 8px;
+    color: #ff9900;
+    font-size: 16px !important;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.ranking-body {
+  padding: 0 15px;
+}
+
+#ranking-list .headline-link {
+    border-top: 1px dotted #fff;
+    padding: 7px 10px;
+}
+
+.userinfo .status p {
+  font-size: 14px;
+  padding: 0;
+}
+
+.userinfo .status strong {
+  color: #fe0017 !important;
+  line-height: 16px;
 }

@@ -17,7 +17,7 @@
         <%= review.book.title %>
       <% end %>
     </h3>
-    <b><%= review.title %></b>
+    <p class="user-review-title"><b><%= review.title %></b></p>
     <div class="details">
       <span>
         <%= t "reviews.index.reviewer" %>
@@ -33,6 +33,8 @@
       <span class="fa fa-thumbs-o-up"></span>
       <%= review.likes.count %>
     </div>
-    <p class="row more"><%= review.content.html_safe %></p>
+    <p class="row more">
+      <%= truncate_html(review.content, length: 350, omission: ' ...') %>
+    </p>
   </div>
 </div>

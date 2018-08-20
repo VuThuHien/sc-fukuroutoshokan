@@ -12,6 +12,8 @@ class Book < ApplicationRecord
   
   mount_uploader :picture, ImagesUploader
   
+  ransack_alias :book, :title_or_isbn_or_authors_name
+  
   def average_rate
     book = Book.find_by id: self.id
     rates = book.rates
@@ -22,5 +24,10 @@ class Book < ApplicationRecord
     end
     return total * 1.0 / size if size > 0
     0
+  end
+  
+  private
+  def self.ransortable_attributes(auth_object = nil)
+    %w(title isbn) + _ransackers.keys
   end
 end

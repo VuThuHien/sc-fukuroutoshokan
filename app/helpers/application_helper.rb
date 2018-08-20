@@ -8,8 +8,8 @@ module ApplicationHelper
     review.likes.find_by user_id: current_user.id
   end
   
-  def author_rate(movie, user)
-    rates = movie.rates.where(user_id: user.id)
+  def author_rate(book, user)
+    rates = book.rates.where(user_id: user.id)
     size = rates.size
     total = 0
     rates.each do |rate|
